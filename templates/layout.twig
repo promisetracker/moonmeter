@@ -3,20 +3,34 @@
     <head>
     {% block head %}
         <meta charset="utf-8"/>
-        <title>{% block title %}{% endblock %} - My Webpage</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/assets/style.css" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="/assets/app.css" />
     {% endblock %}
     </head>
     <body>
         <header class="global">
-            <nav class="site-header sticky-top py-1">
-                <div class="container d-flex flex-column flex-md-row justify-content-between">
-                    <a class="py-2" href="/"><img src="/assets/logo.png" alt="logo"></a>
-                    <a class="py-2 d-none d-md-inline-block" href="/about">문미터소개</a>
-                    <a class="py-2 d-none d-md-inline-block" href="/promises">문제인공약</a>
-                    <a class="py-2 d-none d-md-inline-block" href="/">분류별 공약도</a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">도와주세요</a>
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/"><img src="/assets/logo.png" alt="logo"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse justify-content-md-end" id="navbarCollapse">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/about">문미터소개 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/promises">문제인공약</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">분류별 공약도</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">도와주세요</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -59,6 +73,15 @@
         <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        
+        <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script>
+            WebFont.load({
+                custom: {
+                    families: ['Spoqa Han Sans:n3,n7'],
+                    urls: ['//cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/2.1.1/css/SpoqaHanSans-kr.min.css']
+                }
+            });
+        </script>
+        <script src="../assets/app.js"></script>
     </body>
 </html>
