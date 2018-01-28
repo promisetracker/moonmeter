@@ -6,16 +6,27 @@ return [
         'view' => [
             'template_path' => __DIR__ . '/../templates',
             'twig' => [
-                'cache' => false,
+                'cache' => __DIR__ . '/../.cache',
                 'debug' => true,
                 'auto_reload' => true,
             ]
         ],
         // Monolog settings
         'logger' => [
-            'name' => 'slim-app',
-            'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
+            'name' => 'app',
+            'path' => !empty(getenv('DOCKER')) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
+        // DB connection
+        'db' => [
+            'driver' => 'mysql',
+            'host' => isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : '127.0.0.1',
+            'database' => isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : '',
+            'username' => isset($_ENV['DB_USER']) ? $_ENV['DB_USER'] : '',
+            'password' => isset($_ENV['DB_PASS']) ? $_ENV['DB_PASS'] : '',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ]
     ],
 ];

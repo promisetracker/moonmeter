@@ -13,6 +13,12 @@ require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
+if (!empty(getenv('SLIM_MODE')) && getenv('SLIM_MODE') == 'development') {
+	$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
+	$dotenv->load();
+	$dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS']);
+}
+
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);

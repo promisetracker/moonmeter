@@ -1,6 +1,6 @@
 <?php
-// DIC configuration
 
+// DIC configuration
 $container = $app->getContainer();
 
 // Register component on container
@@ -20,7 +20,12 @@ $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
     $logger = new Monolog\Logger($settings['name']);
     $logger->pushProcessor(new Monolog\Processor\UidProcessor());
-    $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
+    $handler = new Monolog\Handler\StreamHandler($settings['path'], $settings['level']);
+    if ($settings['path'] == 'php://stdout') {
+        $handler->setFormatter(new Bramus\Monolog\Formatter\ColoredLineFormatter());
+    }
+    $logger->pushHandler($handler);
+
     return $logger;
 };
 
