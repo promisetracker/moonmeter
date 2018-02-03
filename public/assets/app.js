@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({5:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -100,7 +100,7 @@ function getBaseURL(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 
-},{}],3:[function(require,module,exports) {
+},{}],5:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -132,13 +132,13 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":5}],2:[function(require,module,exports) {
+},{"./bundle-url":8}],2:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./../public/assets/bg-at-a-glance.jpg":[["cf399f487b52cafba4b27fdfa7ce3148.jpg",4],4],"_css_loader":3}],1:[function(require,module,exports) {
+},{"./../public/assets/bg-at-a-glance.jpg":[["cf399f487b52cafba4b27fdfa7ce3148.jpg",6],6],"_css_loader":5}],1:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -154,7 +154,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = () => {
   console.log(_style2.default);
 };
-},{"./style.scss":2}],6:[function(require,module,exports) {
+},{"./style.scss":2}],9:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -174,7 +174,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '63916' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '55881' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -275,5 +275,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[6,1])
+},{}]},{},[9,1])
 //# sourceMappingURL=/assets/app.map
