@@ -20,10 +20,10 @@ return [
         // DB connection
         'db' => [
             'driver' => 'mysql',
-            'host' => isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : '127.0.0.1',
-            'database' => isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : '',
-            'username' => isset($_ENV['DB_USER']) ? $_ENV['DB_USER'] : '',
-            'password' => isset($_ENV['DB_PASS']) ? $_ENV['DB_PASS'] : '',
+            'host' => getenv('DB_HOST', true) ? getenv('DB_HOST') : '127.0.0.1',
+            'database' => getenv('DB_NAME', true) ? getenv('DB_NAME') : '',
+            'username' => getenv('DB_USER', true) ? getenv('DB_USER') : '',
+            'password' => getenv('DB_PASS', true) ? getenv('DB_PASS') : '',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
