@@ -6044,3 +6044,9 @@ a.text-dark:hover, a.text-dark:focus {
   background: transparent;
   color: #fff;
   border: 1px solid #ccc; }
+
+.page-title {
+  font-size: 2.2rem;
+  padding: 0.5rem 0;
+  margin: 1.5rem 0;
+  border-bottom: 1px solid #ccc; }
