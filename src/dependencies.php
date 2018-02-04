@@ -43,9 +43,13 @@ $container['db'] = function ($c) {
 //Override the default Not Found Handler
 $container['notFoundHandler'] = function ($c) {
     return function ($request, $response) use ($c) {
-        return $c['view']->render($response->withStatus(404), '404.twig', [
-            "myMagic" => "Let's roll"
-        ]);
+        return $c['view']->render($response->withStatus(404), '404.twig');
     };
+};
+
+// Add common library
+require __DIR__ . '/common.php';
+$container['common'] = function ($c) {
+    return new Common($c);
 };
 

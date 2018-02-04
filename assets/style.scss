@@ -32,3 +32,18 @@
 	margin: 1.5rem 0;
 	border-bottom: 1px solid #ccc;
 }
+
+.bb-1 {
+	border-bottom: 1px solid #ccc;
+}
+
+.promise.detail {
+	#sidebar {
+		.block.overview {
+			background-color: $light;
+			h2 {
+				background-color: $blue-light;
+			}
+		}
+	}	
+}

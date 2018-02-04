@@ -1,0 +1,17 @@
+{% extends "layout.twig" %}
+{% block title %}문미터 - 공약제크 프로젝트 1{% endblock %}
+{% block content %}
+
+<div class="container">
+	<h1 class="page-title">문재인 공약 <span class="badge badge-info">{{ promises|length }}</span></h1>
+
+	<div id="content">
+		<ul class="list-unstyled">
+{% for promise in promises %}
+			<li class="bb-1 py-2"><a href="/promise/{{ promise.sp_no }}">{{ promise.sp_title }}</a></li>
+{% endfor %}
+		</ul>
+	</div>
+</div>
+
+{% endblock %}

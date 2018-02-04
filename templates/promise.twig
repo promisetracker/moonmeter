@@ -1,0 +1,167 @@
+{% extends "layout.twig" %}
+{% block title %}문미터 - 공약제크 프로젝트 1{% endblock %}
+{% block content %}
+
+<div class="container promise detail">
+	
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="/">문미터 소개</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">문미터는?</li>
+	  </ol>
+	</nav>
+	
+	<div class="row">
+		<div id="content" class="col-md-8">
+			<div class="content-header">
+				<h1 class="page-title">{{ promise.sp_title }}</h1>
+				<p class="lead">
+					{{ promise.sp_title }}
+				</p>
+				<dl class="row">
+					<dt class="col-sm-2">4대 비전:</dt>
+					<dd class="col-sm-10">{{ promise.pv_title }}</dd>
+					<dt class="col-sm-2">12대 공약:</dt>
+					<dd class="col-sm-10">{{ promise.pp_title }}</dd>
+					<dt class="col-sm-2">주제:</dt>
+					<dd class="col-sm-10">{{ promise.ppk_title }}</dd>
+					<dt class="col-sm-2">메인 약속:</dt>
+					<dd class="col-sm-10">{{ promise.mp_title }}</dd>
+				</dl>
+				<div class="row justify-content-between">
+					<div class="col-4">
+						<ul class="list-inline">
+							<li class="list-inline-item">공유</li>
+							<li class="list-inline-item">댓글</li>
+						</ul>
+					</div>
+					<div class="col-4">
+						<ul class="list-inline">
+							<li class="list-inline-item">페북</li>
+							<li class="list-inline-item">트위터</li>
+							<li class="list-inline-item">네이버</li>
+							<li class="list-inline-item">구글</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<section class="status my-5">
+				<h3>공약 진행 단계</h3>
+				<div class="row">
+					<div class="col-md-2">
+						<span class="text-success lead">{{ status[promise.promise_level] }}</span>
+					</div>
+					<div class="col-md-10">
+						<div class="progress">
+							<div class="progress-bar bg-success" role="progressbar" style="width: {{ 6 // promise.promise_level * 10 }}%" aria-valuenow="{{ promise.promise_level }}" aria-valuemin="1" aria-valuemax="6">
+								{{ 6 // promise.promise_level * 10 }}%
+							</div>
+						</div>
+						<ul class="list-inline">
+{% for step in status %}
+							<li class="list-inline-item text-muted {% if not loop.last %}mr-5{% endif %}">{{ step }}</li>
+{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="moonmeter my-5">
+				<h3>문미터 의견</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum ex aliquid suscipit quidem. Dignissimos, itaque maiores quaerat consequuntur quisquam labore deleniti, ut reprehenderit voluptatem quos sit. Tempora non, error alias.</p>	
+			</section>
+
+			<section class="related-news my-5">
+				<h3>근거 기사</h3>
+				<ul>
+					<li>기사1</li>
+					<li>기사1</li>
+					<li>기사1</li>
+					<li>기사1</li>
+					<li>기사1</li>
+				</ul>
+			</section>
+
+			<section class="comment my-5">
+				<h3>문미터 의견</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum ex aliquid suscipit quidem. Dignissimos, itaque maiores quaerat consequuntur quisquam labore deleniti, ut reprehenderit voluptatem quos sit. Tempora non, error alias.</p>	
+			</section>
+
+		</div>
+
+		<div id="sidebar" class="col-md-4">
+			<div class="block status">
+				<div class="status-date float-right">{{ date }}</div>
+				<h4 class="bb-1">공약이행 단계별 상황</h4>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+					</li>
+					<li class="list-inline-item">
+						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+					</li>
+					<li class="list-inline-item">
+						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+					</li>
+					<li class="list-inline-item">
+						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+					</li>
+					<li class="list-inline-item">
+						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="block overview bg-light">
+				<h2 class="text-primary text-center p-3">공약 한눈에 보기</h2>
+				<div class="row">
+					<div class="promise-by-category row bb-1 p-3 clearfix">
+						<div class="col-md-4">
+							<img class="img-fluid" src="/assets/pledge-by-category-sm.png">
+						</div>
+						<div class="col-md-8">
+							<h5 class="card-title">분류별 공약</h5>
+							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며 행사하는...</p>
+						</div>
+					</div>
+
+					<div class="promise-by-theme row bb-1 p-3">
+						<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-theme-sm.png"></div>
+						<div class="col-md-8">
+							<h5 class="card-title">테마별 공약</h5>
+							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며 행사하는...</p>
+						</div>
+					</div>
+
+					<div class="promise-by-people row bb-1 p-3">
+						<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-people-sm.png"></div>
+						<div class="col-md-8">
+							<h5 class="card-title">수혜 계층별 공약</h5>
+							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며 행사하는...</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+</div>
+
+{% endblock %}

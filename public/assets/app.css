@@ -6050,3 +6050,11 @@ a.text-dark:hover, a.text-dark:focus {
   padding: 0.5rem 0;
   margin: 1.5rem 0;
   border-bottom: 1px solid #ccc; }
+
+.bb-1 {
+  border-bottom: 1px solid #ccc; }
+
+.promise.detail #sidebar .block.overview {
+  background-color: #f8f9fa; }
+  .promise.detail #sidebar .block.overview h2 {
+    background-color: #007bff; }
