@@ -47,12 +47,14 @@ class Common {
                 $this->ci->logger->notice($match);
                 $groups[] = [
                     'title' => $item,
-                    'total' => $results[$match]->total
+                    'total' => $results[$match]->total,
+                    'percent' => ($results[$match]->total / $this->total_promises_count) * 100
                 ];
             } else {
                 $groups[] = [
                     'title' => $item,
-                    'total' => 0
+                    'total' => 0,
+                    'percent' => 0
                 ];
             }
         }
