@@ -154,7 +154,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = () => {
   console.log(_style2.default);
 };
-},{"./style.scss":2}],9:[function(require,module,exports) {
+},{"./style.scss":2}],11:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -275,5 +275,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[9,1])
+},{}]},{},[11,1])
 //# sourceMappingURL=/assets/app.map
