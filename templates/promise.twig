@@ -88,40 +88,24 @@
 		</div>
 
 		<div id="sidebar" class="col-md-4">
-			<div class="block status">
+			<div class="block status mt-4">
 				<div class="status-date float-right">{{ date }}</div>
-				<h4 class="bb-1">공약이행 단계별 상황</h4>
-				<ul class="list-inline">
-					<li class="list-inline-item">
-						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+				<h4 class="bb-1 py-3">공약이행 단계별 상황</h4>
+				<ul class="list-unstyled">
+{% for group in groups %}
+					<li>
+						<div class="row py-2">
+							<div class="col-md-3">{{ group.title }}</div>
+							<div class="col-md-7 py-1">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" style="width: {{ (group.total / total_promises_count) * 100 }}%" aria-valuenow="{{ group.total }}" aria-valuemin="0" aria-valuemax="{{ total_promises_count }}"></div>
+								</div>
+							</div>
+							<div class="col-md-1 text-right">{{ group.total }}</div>
 						</div>
+						
 					</li>
-					<li class="list-inline-item">
-						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</li>
-					<li class="list-inline-item">
-						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</li>
-					<li class="list-inline-item">
-						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</li>
-					<li class="list-inline-item">
-						<a href="/promise/1">국정농단과 적폐조사 및 재발방지</a>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</li>
+{% endfor %}
 				</ul>
 			</div>
 			<div class="block overview bg-light">
@@ -157,9 +141,6 @@
 			</div>
 		</div>
 	</div>
-
-	
-
 </div>
 
 {% endblock %}

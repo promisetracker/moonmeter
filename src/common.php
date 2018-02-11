@@ -1,6 +1,7 @@
 <?php
 
 use Interop\Container\ContainerInterface;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class Common {
     protected $ci;
@@ -13,6 +14,7 @@ class Common {
         "파기",
         "완료"
     ];
+    public $total_promises_count = 888;
   
     //Constructor
     public function __construct(ContainerInterface $ci) {
@@ -29,6 +31,32 @@ class Common {
 
     public function get_promise_related_articles($id) {
         return $this->ci->db->table('related_news')->where('sp_no', $id)->get();
+    }
+
+    public function get_promise_status() {
+        $results = $this->ci->db->table('sub_promise')
+                ->select('promise_level', DB::raw('count(*) as total'))
+                ->groupBy('promise_level')
+                ->get()->toArray();
+        // return $results;
+        $status = $this->status;
+        $groups = [];
+        foreach ($status as $key => $item) {
+            $match = array_search($key, array_column($results, 'promise_level'));
+            if ($match !== false) {
+                $this->ci->logger->notice($match);
+                $groups[] = [
+                    'title' => $item,
+                    'total' => $results[$match]->total
+                ];
+            } else {
+                $groups[] = [
+                    'title' => $item,
+                    'total' => 0
+                ];
+            }
+        }
+        return $groups;
     }
 
 }

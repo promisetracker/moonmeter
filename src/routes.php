@@ -13,15 +13,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     $categories = $this->db->table('p_12promise_category')->get();
     $activePromises = $this->db->table('sub_promise')->where('promise_level', '<>', '0')->orderBy('promise_level', 'desc')->get();
 
-    $status = [
-    	"평가안됨(준비안됨)",
-    	"시작안함",
-    	"진행중",
-    	"변경(공약)",
-    	"지체(정체)",
-    	"파기",
-    	"공약 이행(완료)",
-    ];
+    $status = $this->common->status;
 
     $args += [
     	'visions' => $visions,
@@ -70,12 +62,16 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
     catch(Slim\Exception\NotFoundException $e) {
     	throw new \Slim\Exception\NotFoundException($request, $response);
     }
+
+    $groups = $this->common->get_promise_status();
     
     $args = [
+        'total_promises_count' => $this->common->total_promises_count,
 		'promise' => $promise,
 		'status' => $status,
 		'note' => $note,
-		'articles' => $articles
+		'articles' => $articles,
+        'groups' => $groups
 	];
 
 	return $this->view->render($response, 'promise.twig', $args);
