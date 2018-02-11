@@ -6,8 +6,7 @@ use Slim\Views\Twig;
 
 // 초기 화면
 $app->get('/', function (Request $request, Response $response, array $args) {
-	$name = !empty($args['name']) ? $args['name'] : '';
-	$this->logger->notice($name);
+
     // Render index view
     $visions = $this->db->table('p_4vision')->get();
     $promises = $this->db->table('p_12promise')->get();
@@ -59,12 +58,14 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
 	$id = $args['id'];
 	$status = $this->common->status;
 	$priomise = [];
-	
+
 	try {
     	$promise = $this->common->get_the_promise($id);
     	if (empty($promise)) {
     		throw new \Slim\Exception\NotFoundException($request, $response);
     	}
+    	$note = $this->common->get_promise_note($id);
+    	$articles = $this->common->get_promise_related_articles($id)->all();
     }
     catch(Slim\Exception\NotFoundException $e) {
     	throw new \Slim\Exception\NotFoundException($request, $response);
@@ -73,6 +74,8 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
     $args = [
 		'promise' => $promise,
 		'status' => $status,
+		'note' => $note,
+		'articles' => $articles
 	];
 
 	return $this->view->render($response, 'promise.twig', $args);

@@ -23,4 +23,12 @@ class Common {
         return $this->ci->db->table('full_promise')->where('sp_no', $id)->get()->first();
     }
 
+    public function get_promise_note($id) {
+        return $this->ci->db->table('factcheck_desc')->where('sp_no', $id)->get()->first();
+    }
+
+    public function get_promise_related_articles($id) {
+        return $this->ci->db->table('related_news')->where('sp_no', $id)->get();
+    }
+
 }

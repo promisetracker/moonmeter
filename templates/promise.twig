@@ -47,7 +47,7 @@
 			</div>
 
 			<section class="status my-5">
-				<h3>공약 진행 단계</h3>
+				<h3 class="my-4">공약 진행 단계</h3>
 				<div class="row">
 					<div class="col-md-2">
 						<span class="text-success lead">{{ status[promise.promise_level] }}</span>
@@ -67,26 +67,23 @@
 				</div>
 			</section>
 
+{% if note.fcd_desc is not empty %}
 			<section class="moonmeter my-5">
-				<h3>문미터 의견</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum ex aliquid suscipit quidem. Dignissimos, itaque maiores quaerat consequuntur quisquam labore deleniti, ut reprehenderit voluptatem quos sit. Tempora non, error alias.</p>	
+				<h3 class="my-4">문미터 의견</h3>
+				<p>{{ note.fcd_desc | raw }}</p>	
 			</section>
+{% endif %}
 
+{% if articles | length > 0 %}
 			<section class="related-news my-5">
-				<h3>근거 기사</h3>
-				<ul>
-					<li>기사1</li>
-					<li>기사1</li>
-					<li>기사1</li>
-					<li>기사1</li>
-					<li>기사1</li>
+				<h3 class="my-4">근거 기사</h3>
+				<ul class="list-unstyled">
+{% for article in articles %}
+					<li class="bb-1 py-2"><a href="{{ article.r_link}}" target="_blank">{{ article.r_title }}</a></li>
+{% endfor %}
 				</ul>
 			</section>
-
-			<section class="comment my-5">
-				<h3>문미터 의견</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum ex aliquid suscipit quidem. Dignissimos, itaque maiores quaerat consequuntur quisquam labore deleniti, ut reprehenderit voluptatem quos sit. Tempora non, error alias.</p>	
-			</section>
+{% endif %}
 
 		</div>
 
@@ -128,34 +125,35 @@
 				</ul>
 			</div>
 			<div class="block overview bg-light">
+				
 				<h2 class="text-primary text-center p-3">공약 한눈에 보기</h2>
-				<div class="row">
-					<div class="promise-by-category row bb-1 p-3 clearfix">
-						<div class="col-md-4">
-							<img class="img-fluid" src="/assets/pledge-by-category-sm.png">
-						</div>
-						<div class="col-md-8">
-							<h5 class="card-title">분류별 공약</h5>
-							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며 행사하는...</p>
-						</div>
-					</div>
 
-					<div class="promise-by-theme row bb-1 p-3">
-						<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-theme-sm.png"></div>
-						<div class="col-md-8">
-							<h5 class="card-title">테마별 공약</h5>
-							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며 행사하는...</p>
-						</div>
+				<div class="promise-by-category row bb-1 p-1 m-0">
+					<div class="col-md-4">
+						<img class="img-fluid" src="/assets/pledge-by-category-sm.png">
 					</div>
-
-					<div class="promise-by-people row bb-1 p-3">
-						<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-people-sm.png"></div>
-						<div class="col-md-8">
-							<h5 class="card-title">수혜 계층별 공약</h5>
-							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며 행사하는...</p>
-						</div>
+					<div class="col-md-8">
+						<h5 class="card-title">분류별 공약</h5>
+						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며...</p>
 					</div>
 				</div>
+
+				<div class="promise-by-theme row bb-1 p-1 m-0">
+					<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-theme-sm.png"></div>
+					<div class="col-md-8">
+						<h5 class="card-title">테마별 공약</h5>
+						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며...</p>
+					</div>
+				</div>
+
+				<div class="promise-by-people row bb-1 p-1 m-0">
+					<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-people-sm.png"></div>
+					<div class="col-md-8">
+						<h5 class="card-title">수혜 계층별 공약</h5>
+						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며...</p>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
