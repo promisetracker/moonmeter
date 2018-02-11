@@ -32,9 +32,14 @@ $app->get('/about', function (Request $request, Response $response, array$args) 
 
 // 공약
 $app->get('/promises', function (Request $request, Response $response, array$args) {
-	$promises = $this->db->table('sub_promise')->orderBy('sp_no', 'asc')->get();
+    $groups = $this->common->get_promise_status();
+    $full_promises = $this->common->get_full_promises();
+    $full_promises_array = $this->common->array_group_by($full_promises, 'pv_title', 'pp_title', 'ppk_title', 'mp_title');
+    $this->logger->info(print_r($full_promises_array, true));
 	$args = [
-		'promises' => $promises,
+        'total_promises_count' => $this->common->total_promises_count,
+        'groups' => $groups,
+        'full_promises' => $full_promises_array
 	];
 	return $this->view->render($response, 'promises.twig', $args);
 })->setName('promises');

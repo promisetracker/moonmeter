@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({8:[function(require,module,exports) {
+})({5:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -100,7 +100,7 @@ function getBaseURL(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 
-},{}],5:[function(require,module,exports) {
+},{}],3:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -132,13 +132,13 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":8}],2:[function(require,module,exports) {
+},{"./bundle-url":5}],2:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./../public/assets/bg-at-a-glance.jpg":[["cf399f487b52cafba4b27fdfa7ce3148.jpg",6],6],"_css_loader":5}],1:[function(require,module,exports) {
+},{"./../public/assets/bg-at-a-glance.jpg":[["cf399f487b52cafba4b27fdfa7ce3148.jpg",4],4],"./../public/assets/bg-vision.png":[["b4fd14a77aa02f09b43f11b8fc44e197.png",10],10],"_css_loader":3}],1:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -174,7 +174,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '55881' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '56039' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

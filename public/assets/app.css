@@ -6051,3 +6051,43 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: #f8f9fa; }
   .promise.detail #sidebar .block.overview h2 {
     background-color: #007bff; }
+
+.promises .vision {
+  background: url("b4fd14a77aa02f09b43f11b8fc44e197.png") no-repeat;
+  background-size: cover; }
+  .promises .vision .sequence {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    display: inline-block;
+    padding: .3rem 1rem;
+    margin-bottom: 1.5rem; }
+
+.promises #promises-full h3.vision-title {
+  font-size: 2.2rem;
+  padding: 1rem .5rem;
+  margin: 1.5rem 0;
+  border-bottom: 1px solid #ccc;
+  color: #fff;
+  background-color: #000051; }
+
+.promises #promises-full h4 {
+  margin-left: 1.5rem;
+  padding: 1rem .5rem;
+  color: #fff;
+  background-color: #28a745; }
+
+.promises #promises-full h5 {
+  margin-left: 3rem;
+  padding: 1rem .5rem;
+  color: #fff;
+  background-color: #007bff; }
+
+.promises #promises-full h6 {
+  margin-left: 4.5rem;
+  padding: 1rem .5rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #343a40; }
+
+.promises #promises-full ul {
+  margin-left: 4.5rem; }

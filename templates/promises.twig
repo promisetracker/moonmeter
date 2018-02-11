@@ -2,16 +2,77 @@
 {% block title %}문미터 - 공약제크 프로젝트 1{% endblock %}
 {% block content %}
 
-<div class="container">
-	<h1 class="page-title">문재인 공약 <span class="badge badge-info">{{ promises|length }}</span></h1>
+<div class="container promises">
 
-	<div id="content">
-		<ul class="list-unstyled">
-{% for promise in promises %}
-			<li class="bb-1 py-2"><a href="/promise/{{ promise.sp_no }}">{{ promise.sp_title }}</a></li>
+	<div class="row">
+		<div id="content" class="col-md-9">
+			<div class="content-header">
+				<h1 class="page-title">문재인 공약</h1>
+			</div>
+
+			<div id="promises-overview" class="row">
+		{% for vision_title, vision in full_promises %}
+				<div class="col-md-6">
+					<div class="vision bg-light p-5 mb-3 text-center text-white">
+						<span class="lead sequence">비전 {{ loop.index }}</span>
+						<h3 class="bb-1 pb-3 mb-3"><a class="text-white" href="#v{{ loop.index }}">{{ vision_title }}</a></h3>
+						<ol class="text-left">
+				{% set vision_id = loop.index %}
+				{% for promise_12_title, promise in vision %}
+							<li><a class="text-white" href="#v{{ vision_id }}p{{ loop.index }}">{{ promise_12_title }}</a></li>
+				{% endfor %}
+						</ol>
+					</div>
+					
+				</div>
+		{% endfor %}
+			</div>
+
+			<div id="promises-full">
+{% for vision_title, vision in full_promises %}
+	<h3 class="vision-title" id="v{{ loop.index }}">{{ loop.index }}. {{ vision_title }}</h3>
+	{% set vision_id = loop.index %}
+	{% for promise_12_title, promise in vision %}
+		<h4 id="v{{ vision_id }}p{{ loop.index }}">{{ loop.index }}. {{ promise_12_title }}</h4>
+		{% for promise_12_category_title, main_promise in promise %}
+			<h5>{{ loop.index }}. {{ promise_12_category_title }}</h5>
+			{% for main_promise_title, sub_promises in main_promise %}
+				<h6>{{ loop.index }}. {{ main_promise_title }}</h6>
+				<ul>
+				{% for sub_promise in sub_promises %}
+					<li><a href="/promise/{{ sub_promise.sp_no }}">{{ sub_promise.sp_title }}</a></li>
+				{% endfor %}
+				</ul>
+			{% endfor %}
+		{% endfor %}
+		
+	{% endfor %}
 {% endfor %}
-		</ul>
-	</div>
+			</div>
+		</div>
+
+		<div id="sidebar" class="col-md-3">
+			<div class="block status mt-4">
+				<div class="status-date float-right">{{ date }}</div>
+				<h4 class="bb-1 py-3">공약이행 단계별 상황</h4>
+				<ul class="list-unstyled">
+{% for group in groups %}
+					<li>
+						<div class="row py-2">
+							<div class="col-md-3">{{ group.title }}</div>
+							<div class="col-md-7 py-1">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" style="width: {{ group.percent }}%" aria-valuenow="{{ group.total }}" aria-valuemin="0" aria-valuemax="{{ total_promises_count }}"></div>
+								</div>
+							</div>
+							<div class="col-md-1 text-right">{{ group.total }}</div>
+						</div>
+						
+					</li>
+{% endfor %}
+				</ul>
+			</div>
+		</div>
 </div>
 
 {% endblock %}
