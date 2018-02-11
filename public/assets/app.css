@@ -6038,6 +6038,14 @@ a.text-dark:hover, a.text-dark:focus {
   color: #fff;
   border: 1px solid #ccc; }
 
+#keep-in-touch .banner.d-none.d-sm-block {
+  background: #1e88e5 url("c8993c77187ae386b073ad9ac7d63d20.png") no-repeat;
+  background-size: cover; }
+
+#keep-in-touch .banner.d-block.d-sm-none {
+  background: #1e88e5 url("d589ebb0db80e7c1bed17b01c2090109.png") no-repeat;
+  background-size: cover; }
+
 .page-title {
   font-size: 2.2rem;
   padding: 0.5rem 0;

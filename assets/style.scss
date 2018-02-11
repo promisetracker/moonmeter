@@ -16,6 +16,17 @@
 	border: 1px solid #ccc;
 }
 
+#keep-in-touch {
+	.banner.d-none.d-sm-block {
+		background: $blue-bg url('../public/assets/banner-about.png') no-repeat;
+		background-size: cover;
+	}
+	.banner.d-block.d-sm-none {
+		background: $blue-bg url('../public/assets/banner-about-sm.png') no-repeat;
+		background-size: cover;
+	}
+}
+
 .page-title {
 	font-size: 2.2rem;
 	padding: 0.5rem 0;

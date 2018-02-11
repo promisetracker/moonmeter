@@ -138,7 +138,7 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./../public/assets/bg-at-a-glance.jpg":[["cf399f487b52cafba4b27fdfa7ce3148.jpg",4],4],"./../public/assets/bg-vision.png":[["b4fd14a77aa02f09b43f11b8fc44e197.png",10],10],"_css_loader":3}],1:[function(require,module,exports) {
+},{"./../public/assets/bg-at-a-glance.jpg":[["cf399f487b52cafba4b27fdfa7ce3148.jpg",4],4],"./../public/assets/banner-about.png":[["c8993c77187ae386b073ad9ac7d63d20.png",16],16],"./../public/assets/banner-about-sm.png":[["d589ebb0db80e7c1bed17b01c2090109.png",15],15],"./../public/assets/bg-vision.png":[["b4fd14a77aa02f09b43f11b8fc44e197.png",10],10],"_css_loader":3}],1:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -154,7 +154,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = () => {
   console.log(_style2.default);
 };
-},{"./style.scss":2}],11:[function(require,module,exports) {
+},{"./style.scss":2}],14:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -275,5 +275,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[11,1])
+},{}]},{},[14,1])
 //# sourceMappingURL=/assets/app.map

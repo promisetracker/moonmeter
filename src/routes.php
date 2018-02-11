@@ -8,19 +8,17 @@ use Slim\Views\Twig;
 $app->get('/', function (Request $request, Response $response, array $args) {
 
     // Render index view
-    $visions = $this->db->table('p_4vision')->get();
-    $promises = $this->db->table('p_12promise')->get();
-    $categories = $this->db->table('p_12promise_category')->get();
-    $activePromises = $this->db->table('sub_promise')->where('promise_level', '<>', '0')->orderBy('promise_level', 'desc')->get();
+    $activePromises = $this->db->table('sub_promise')->where('promise_level', '<>', '0')->orderBy('promise_level', 'desc')->offset(0)->limit(5)->get();
 
     $status = $this->common->status;
+    $groups = $this->common->get_promise_status();
+    $notices = $this->db->table('notice')->orderBy('regdate', 'desc')->limit(5)->get()->toArray();
 
     $args += [
-    	'visions' => $visions,
-    	'promises' => $promises,
-    	'categories' => $categories,
     	'activePromises' => $activePromises,
-    	'status' => $status
+    	'status' => $status,
+        'groups' => $groups,
+        'notices' => $notices
     ];
     return $this->view->render($response, 'index.twig', $args);
 })->setName('front');
