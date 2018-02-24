@@ -1,0 +1,31 @@
+<div class="block status mt-4">
+	<div class="status-date float-right">{{ date }}</div>
+	<h5 class="bb-1 py-3">공약이행 단계별 상황</h5>
+	<ul class="list-unstyled">
+{% for group in groups %}
+		<li>
+			<div class="row py-2">
+				<div class="col-md-3">{{ group.title }}</div>
+				<div class="col-md-7 py-1">
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" style="width: {{ group.percent }}%" aria-valuenow="{{ group.total }}" aria-valuemin="0" aria-valuemax="{{ total_promises_count }}"></div>
+					</div>
+				</div>
+				<div class="col-md-1 text-right">{{ group.total }}</div>
+			</div>
+			
+		</li>
+{% endfor %}
+	</ul>
+</div>
+<div class="block getting-involved">
+	<a href="/"><img class="img-fluid" src="/assets/banner-getting-involved.png" alt="문미터에 참여해보세요"></a>
+</div>
+<div class="block notices">
+	<h5 class="bb-1 pb-2 mb-2">공지사항</h5>
+	<ul class="list-unstyled">
+	{% for notice in notices %}
+		<li><a href="/notice/{{ notice.n_no }}">{{ notice.n_title }}</a></li>
+	{% endfor %}
+	</ul>
+</div>

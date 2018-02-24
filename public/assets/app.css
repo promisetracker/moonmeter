@@ -6030,7 +6030,7 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: #1e88e5; }
 
 #at-a-glance {
-  background: url("cf399f487b52cafba4b27fdfa7ce3148.jpg") no-repeat;
+  background: url("ae3bd5eb3a914a80411a0edabcabe273.jpg") no-repeat;
   background-size: cover; }
 
 .btn-ghost {
@@ -6039,11 +6039,11 @@ a.text-dark:hover, a.text-dark:focus {
   border: 1px solid #ccc; }
 
 #keep-in-touch .banner.d-none.d-sm-block {
-  background: #1e88e5 url("c8993c77187ae386b073ad9ac7d63d20.png") no-repeat;
+  background: #1e88e5 url("a37000c8ce269844ae8967bb22cb9ed6.png") no-repeat;
   background-size: cover; }
 
 #keep-in-touch .banner.d-block.d-sm-none {
-  background: #1e88e5 url("d589ebb0db80e7c1bed17b01c2090109.png") no-repeat;
+  background: #1e88e5 url("49ed2f2e956b8874f10bf1bb6ec4450d.png") no-repeat;
   background-size: cover; }
 
 .page-title {
@@ -6060,15 +6060,20 @@ a.text-dark:hover, a.text-dark:focus {
   .promise.detail #sidebar .block.overview h2 {
     background-color: #007bff; }
 
-.promises .vision {
-  background: url("b4fd14a77aa02f09b43f11b8fc44e197.png") no-repeat;
-  background-size: cover; }
-  .promises .vision .sequence {
-    border: 1px solid #fff;
-    border-radius: 5px;
-    display: inline-block;
-    padding: .3rem 1rem;
-    margin-bottom: 1.5rem; }
+.promises .vision .sequence {
+  position: absolute;
+  display: inline-block;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #000051;
+  color: #fff; }
+
+.promises .vision #v1 {
+  padding-right: 3rem; }
+
+.promises .vision #v2 {
+  padding-right: 4rem; }
 
 .promises #promises-full h3.vision-title {
   font-size: 2.2rem;

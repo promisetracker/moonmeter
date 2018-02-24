@@ -12,7 +12,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 
     $status = $this->common->status;
     $groups = $this->common->get_promise_status();
-    $notices = $this->db->table('notice')->orderBy('regdate', 'desc')->limit(5)->get()->toArray();
+    $notices = $this->common->get_recent_notices();
 
     $args += [
     	'activePromises' => $activePromises,
@@ -33,11 +33,12 @@ $app->get('/promises', function (Request $request, Response $response, array$arg
     $groups = $this->common->get_promise_status();
     $full_promises = $this->common->get_full_promises();
     $full_promises_array = $this->common->array_group_by($full_promises, 'pv_title', 'pp_title', 'ppk_title', 'mp_title');
-    $this->logger->info(print_r($full_promises_array, true));
+    $notices = $this->common->get_recent_notices();
 	$args = [
         'total_promises_count' => $this->common->total_promises_count,
         'groups' => $groups,
-        'full_promises' => $full_promises_array
+        'full_promises' => $full_promises_array,
+        'notices' => $notices
 	];
 	return $this->view->render($response, 'promises.twig', $args);
 })->setName('promises');

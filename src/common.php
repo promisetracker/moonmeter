@@ -38,7 +38,6 @@ class Common {
                 ->select('promise_level', DB::raw('count(*) as total'))
                 ->groupBy('promise_level')
                 ->get()->toArray();
-        // return $results;
         $status = $this->status;
         $groups = [];
         foreach ($status as $key => $item) {
@@ -106,6 +105,10 @@ class Common {
         }
 
         return $grouped;
+    }
+
+    public function get_recent_notices() {
+        return $this->ci->db->table('notice')->orderBy('regdate', 'desc')->limit(5)->get()->toArray();
     }
 
 }

@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({5:[function(require,module,exports) {
+})({18:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -100,7 +100,7 @@ function getBaseURL(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 
-},{}],3:[function(require,module,exports) {
+},{}],9:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -132,13 +132,13 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":5}],2:[function(require,module,exports) {
+},{"./bundle-url":18}],3:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./../public/assets/bg-at-a-glance.jpg":[["cf399f487b52cafba4b27fdfa7ce3148.jpg",4],4],"./../public/assets/banner-about.png":[["c8993c77187ae386b073ad9ac7d63d20.png",16],16],"./../public/assets/banner-about-sm.png":[["d589ebb0db80e7c1bed17b01c2090109.png",15],15],"./../public/assets/bg-vision.png":[["b4fd14a77aa02f09b43f11b8fc44e197.png",10],10],"_css_loader":3}],1:[function(require,module,exports) {
+},{"./../public/assets/bg-at-a-glance.jpg":[["ae3bd5eb3a914a80411a0edabcabe273.jpg",11],11],"./../public/assets/banner-about.png":[["a37000c8ce269844ae8967bb22cb9ed6.png",10],10],"./../public/assets/banner-about-sm.png":[["49ed2f2e956b8874f10bf1bb6ec4450d.png",12],12],"_css_loader":9}],1:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -154,7 +154,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = () => {
   console.log(_style2.default);
 };
-},{"./style.scss":2}],14:[function(require,module,exports) {
+},{"./style.scss":3}],19:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -174,7 +174,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '56039' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '55834' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -275,5 +275,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[14,1])
+},{}]},{},[19,1])
 //# sourceMappingURL=/assets/app.map
