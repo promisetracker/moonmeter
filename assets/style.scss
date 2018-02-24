@@ -100,4 +100,13 @@
 			margin-left: 4.5rem;
 		}
 	}
+
+	&.by-vision {
+		.subject {
+			border-bottom: 1px solid #000;
+		}
+		.subject-categories {
+			font-size: 1.1rem;
+		}
+	}
 }

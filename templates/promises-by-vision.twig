@@ -1,0 +1,49 @@
+{% extends "layout.twig" %}
+{% block title %}문미터 - 공약제크 프로젝트 1{% endblock %}
+{% block content %}
+
+<div class="container promises by-vision">
+
+{% set vision_title = promises | keys | first %}
+
+	<div class="row">
+		<div id="content" class="col-md-9">
+			<div class="content-header">
+				<h1 class="page-title">문재인 공약</h1>
+				<span>비전 {{ vision_id }}</span>
+				<h2 class="my-3">{{ vision_title }}</h2>
+			</div>
+	{% set subjects = promises[vision_title] %}
+		{% for subject_title, categories in subjects %}
+		{% set subject_seq = loop.index %}
+			<h3 class="subject py-3">
+				{{ subject_seq }}. {{ subject_title }}
+				<ul class="ml-5 subject-categories list-inline d-inline text-muted">
+				{% for category in categories | keys %}
+					<li class="list-inline-item">{{ category }}</li>
+				{% endfor %}
+				</ul>
+			</h3>
+			{% for category_title, promises in categories %}
+			{% set category_seq = loop.index %}
+				<h4 class="category py-3">{{ subject_seq }}.{{ category_seq }}. {{ category_title }}</h4>
+				{% for promise, details in promises %}
+					<p>{{ promise }}</p>
+					<ul class="list-unstyled">
+					{% for detail in details %}
+						<li>{{ detail.sp_title }}</li>
+					{% endfor %}
+					</ul>
+				{% endfor %}
+			{% endfor %}
+		{% endfor %}
+		</div>
+
+		<div id="sidebar" class="col-md-3">
+			{% include 'sidebar.twig' %}
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

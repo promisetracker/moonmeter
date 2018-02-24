@@ -28,7 +28,7 @@ $app->get('/about', function (Request $request, Response $response, array$args) 
 	return $this->view->render($response, 'about.twig', $args);
 })->setName('about');
 
-// 공약
+// 문재인 공약
 $app->get('/promises', function (Request $request, Response $response, array$args) {
     $groups = $this->common->get_promise_status();
     $full_promises = $this->common->get_full_promises();
@@ -42,6 +42,33 @@ $app->get('/promises', function (Request $request, Response $response, array$arg
 	];
 	return $this->view->render($response, 'promises.twig', $args);
 })->setName('promises');
+
+// 문재인 공약 비전 상세
+$app->get('/promises/v/{vision_id}', function (Request $request, Response $response, array$args) {
+
+    $vision_id = $args['vision_id'];
+    $groups = $this->common->get_promise_status();
+    $notices = $this->common->get_recent_notices();
+
+    try {
+        $promises = $this->common->get_full_promises($vision_id);
+        $full_promises_array = $this->common->array_group_by($promises, 'pv_title', 'pp_title', 'ppk_title', 'mp_title');
+        if (empty($promises)) {
+            throw new \Slim\Exception\NotFoundException($request, $response);
+        }
+    }
+    catch(Slim\Exception\NotFoundException $e) {
+        throw new \Slim\Exception\NotFoundException($request, $response);
+    }
+
+    $args = [
+        'promises' => $full_promises_array,
+        'vision_id' => $vision_id,
+        'groups' => $groups,
+        'notices' => $notices
+    ];
+    return $this->view->render($response, 'promises-by-vision.twig', $args);
+});
 
 // 도와주세요?
 $app->get('/help', function (Request $request, Response $response, array$args) {

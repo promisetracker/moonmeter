@@ -43,7 +43,6 @@ class Common {
         foreach ($status as $key => $item) {
             $match = array_search($key, array_column($results, 'promise_level'));
             if ($match !== false) {
-                $this->ci->logger->notice($match);
                 $groups[] = [
                     'title' => $item,
                     'total' => $results[$match]->total,
@@ -60,8 +59,14 @@ class Common {
         return $groups;
     }
 
-    public function get_full_promises() {
-        return $this->ci->db->table('full_promise')->get()->toArray();
+    public function get_full_promises($vision_id = '') {
+        $promises = [];
+        if (empty($vision_id)) {
+            $promises = $this->ci->db->table('full_promise')->get()->toArray();
+        } else {
+            $promises = $this->ci->db->table('full_promise')->where('pv_no', $vision_id)->get()->toArray();
+        }
+        return $promises;
     }
 
     public function array_group_by(array $array, $key) {
