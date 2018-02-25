@@ -16,7 +16,7 @@
 	{% set subjects = promises[vision_title] %}
 		{% for subject_title, categories in subjects %}
 		{% set subject_seq = loop.index %}
-			<h3 class="subject py-3">
+			<h3 class="subject py-3" data-toggle="collapse" data-target="#subject-{{ subject_seq }}" aria-expanded="true" aria-controls="#subject-{{ subject_seq }}">
 				{{ subject_seq }}. {{ subject_title }}
 				<ul class="ml-5 subject-categories list-inline d-inline text-muted">
 				{% for category in categories | keys %}
@@ -24,18 +24,22 @@
 				{% endfor %}
 				</ul>
 			</h3>
-			{% for category_title, promises in categories %}
-			{% set category_seq = loop.index %}
-				<h4 class="category py-3">{{ subject_seq }}.{{ category_seq }}. {{ category_title }}</h4>
-				{% for promise, details in promises %}
-					<p>{{ promise }}</p>
-					<ul class="list-unstyled">
-					{% for detail in details %}
-						<li>{{ detail.sp_title }}</li>
-					{% endfor %}
-					</ul>
+			<div id="subject-{{ subject_seq }}" class="collapse{% if subject_seq == 1 %} show{% endif %}">
+				{% for category_title, promises in categories %}
+				{% set category_seq = loop.index %}
+					<h4 class="category py-3" data-toggle="collapse" data-target="#subject-{{ subject_seq }}-category-{{ category_seq }}" aria-expanded="true" aria-controls="#subject-{{ subject_seq }}-category-{{ category_seq }}">{{ subject_seq }}.{{ category_seq }}. {{ category_title }}</h4>
+					<div id="subject-{{ subject_seq }}-category-{{ category_seq }}" class="collapse{% if category_seq == 1 %} show{% endif %}">
+						{% for promise, details in promises %}
+							<p>{{ subject_seq }}.{{ category_seq }}.{{ loop.index}} &nbsp; {{ promise }}</p>
+							<ul class="list-unstyled ml-5 mb-3">
+							{% for detail in details %}
+								<li><a href="/promise/{{ detail.sp_no }}">{{ detail.sp_title }}</a></li>
+							{% endfor %}
+							</ul>
+						{% endfor %}
+					</div>
 				{% endfor %}
-			{% endfor %}
+			</div>
 		{% endfor %}
 		</div>
 

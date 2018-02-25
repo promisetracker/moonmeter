@@ -102,8 +102,11 @@
 	}
 
 	&.by-vision {
-		.subject {
+		h3.subject {
 			border-bottom: 1px solid #000;
+		}
+		h4.category {
+			border-bottom: 1px solid $gray-500;
 		}
 		.subject-categories {
 			font-size: 1.1rem;

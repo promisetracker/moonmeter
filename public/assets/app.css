@@ -6105,8 +6105,11 @@ a.text-dark:hover, a.text-dark:focus {
 .promises #promises-full ul {
   margin-left: 4.5rem; }
 
-.promises.by-vision .subject {
+.promises.by-vision h3.subject {
   border-bottom: 1px solid #000; }
+
+.promises.by-vision h4.category {
+  border-bottom: 1px solid #adb5bd; }
 
 .promises.by-vision .subject-categories {
   font-size: 1.1rem; }
