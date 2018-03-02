@@ -46,10 +46,12 @@
 						<span class="text-success lead">{{ status[promise.promise_level] }}</span>
 					</div>
 					<div class="col-md-10">
+{% set percentage = '0' %}
+{% if promise.promise_level %}
+{% set percentage = 6 // promise.promise_level * 10 %}
+{% endif %}
 						<div class="progress">
-							<div class="progress-bar bg-success" role="progressbar" style="width: {{ 6 // promise.promise_level * 10 }}%" aria-valuenow="{{ promise.promise_level }}" aria-valuemin="1" aria-valuemax="6">
-								{{ 6 // promise.promise_level * 10 }}%
-							</div>
+							<div class="progress-bar bg-success" role="progressbar" style="width: {{ percentage }}%" aria-valuenow="{{ promise.promise_level }}" aria-valuemin="1" aria-valuemax="6">{{ percentage }}%</div>
 						</div>
 						<ul class="list-inline">
 {% for step in status %}
