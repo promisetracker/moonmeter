@@ -1,0 +1,67 @@
+{% extends "layout.twig" %}
+{% block title %}문미터 - 공약제크 프로젝트{% endblock %}
+{% block content %}
+
+<div class="container promises by-vision">
+
+{% set first_letter = type | first %}
+
+	<div class="row">
+		<div id="content" class="col-md-9">
+			<div class="content-header">
+				<form action="" id="select-term" method="GET" class="float-right">
+					<select name="term" onchange="if (this.value) window.location.href='/promises/t/{{ type }}/' + this.value">
+					{% for term in terms %}
+						<option value="{{ attribute(term, first_letter ~ 'sp_no') }}"{% if attribute(term, first_letter ~ 'sp_no') == term_id %} selected{% endif%}>{{ attribute(term, first_letter ~ 'sp_title') }}</option>
+					{% endfor %}
+					</select>
+				</form>
+				<h1 class="page-title">{{ current_taxonomy_type }}별 공약</h1>
+			</div>
+			<div class="content-body">
+			{% if promises | length > 0 %}
+				{% for promise in promises %}
+				<div class="sub-promise my-5 bb-1 pb-4">
+					<h4><a href="/promise/{{ promise.sp_no }}">{{ promise.sp_title }}</a></h4>
+					<section class="status my-3">
+						<div class="row">
+							<div class="col-md-2">
+								<span class="text-success lead">{{ status[promise.promise_level] }}</span>
+							</div>
+							<div class="col-md-10">
+								<div class="progress">
+{% set percentage = '0' %}
+{% if promise.promise_level %}
+{% set percentage = 6 // promise.promise_level * 10 %}
+{% endif %}
+									<div class="progress-bar bg-success" role="progressbar" style="width: {{ percentage }}%" aria-valuenow="{{ promise.promise_level }}" aria-valuemin="1" aria-valuemax="6">{{ percentage }}%</div>
+								</div>
+								<ul class="list-inline">
+								{% for step in status %}
+									<li class="list-inline-item text-muted {% if not loop.last %}mr-5{% endif %}">{{ step }}</li>
+								{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</section>
+					<ul class="list-inline">
+						<li class="list-inline-item">{{ promise.pv_title }}&nbsp;&nbsp; | </li>
+						<li class="list-inline-item">{{ promise.pp_title }}&nbsp;&nbsp; | </li>
+						<li class="list-inline-item">{{ promise.ppk_title }}</li>
+					</ul>
+				</div>
+				{% endfor %}
+			{% else %}
+				<p>이 분류에 속한 약속이 없습니다.</p>
+			{% endif %}
+			</div>
+		</div>
+
+		<div id="sidebar" class="col-md-3">
+			{% include 'sidebar.twig' %}
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

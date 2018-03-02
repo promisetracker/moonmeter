@@ -43,6 +43,51 @@ $app->get('/promises', function (Request $request, Response $response, array$arg
 	return $this->view->render($response, 'promises.twig', $args);
 })->setName('promises');
 
+// 분류별 공약
+$app->get('/promises/t/{type}[/{term_id}]', function (Request $request, Response $response, array$args) {
+    
+    $taxonomy_types = $this->common->taxonomy_types;
+    $status = $this->common->status;
+
+    $types = array_keys($taxonomy_types);
+    $type = $args['type'] ?? 'category';
+
+    $term_id = $args['term_id'] ?? '';
+    $current_taxonomy_type = '';
+    
+    $terms = [];
+    $term_ids = [];
+    $promises = [];
+
+    if (!in_array($type, $types)) {
+        throw new \Slim\Exception\NotFoundException($request, $response);
+    } else {
+        $current_taxonomy_type = $taxonomy_types[$type];
+        $terms = $this->common->get_current_taxonomy_terms($type);
+        $term_ids = $this->common->get_current_taxonomy_terms($type, true);
+        if (!in_array($term_id, $term_ids)) {
+            throw new \Slim\Exception\NotFoundException($request, $response);
+        } else {
+            $promises = $this->common->get_promises_by_type_term($type, $term_id);
+        }
+    }
+
+    $groups = $this->common->get_promise_status();
+    $notices = $this->common->get_recent_notices();
+    $args = [
+        'type' => $type,
+        'term_id' => $term_id,
+        'current_taxonomy_type' => $current_taxonomy_type,
+        'terms' => $terms,
+        'promises' => $promises,
+        'status' => $status,
+        'groups' => $groups,
+        'notices' => $notices
+    ];
+    return $this->view->render($response, 'promises-by-type.twig', $args);
+})->setName('promises_by_type');
+
+
 // 문재인 공약 비전 상세
 $app->get('/promises/v/{vision_id}', function (Request $request, Response $response, array$args) {
 

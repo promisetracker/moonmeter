@@ -5,6 +5,7 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 class Common {
     protected $ci;
+    // 공약 상태 코드
     public $status = [
         "평가안됨",
         "시작안함",
@@ -15,6 +16,12 @@ class Common {
         "완료"
     ];
     public $total_promises_count = 888;
+    // 공약 분류 형식
+    public $taxonomy_types = [
+        'category' => '분류',
+        'theme' => '테마',
+        'hierarchy' => '수혜 계층'
+    ];
   
     //Constructor
     public function __construct(ContainerInterface $ci) {
@@ -114,6 +121,22 @@ class Common {
 
     public function get_recent_notices() {
         return $this->ci->db->table('notice')->orderBy('regdate', 'desc')->limit(5)->get()->toArray();
+    }
+
+    public function get_current_taxonomy_terms($taxonomy, $only_id = '') {
+        $taxonomy_table = $taxonomy . '_sub_promise';
+        $field_name = $taxonomy[0] . 'sp_no';
+        $results = $this->ci->db->table($taxonomy_table)->get()->toArray();
+        if ($only_id) {
+            $results = $this->ci->db->table($taxonomy_table)->pluck($field_name)->toArray();
+        }
+        return $results;
+    }
+
+    public function get_promises_by_type_term($type, $term_id) {
+        $table = 'sub_promise_' . $type;
+        $ids = $this->ci->db->table($table)->where($type[0] . 'sp_no', $term_id)->pluck('sp_no')->toArray();
+        return $this->ci->db->table('full_promise')->whereIn('sp_no', $ids)->get()->toArray();
     }
 
 }
