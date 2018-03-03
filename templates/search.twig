@@ -1,0 +1,50 @@
+{% extends "layout.twig" %}
+{% block title %}문미터 - 공약제크 프로젝트 1{% endblock %}
+{% block content %}
+
+<div class="container search">
+	<div class="row">
+		<div id="content" class="col-md-8">
+			<div class="content-header">
+				<form class="form-inline mt-2 mt-md-0" action="/search" method="get" onchange="$(this).submit()">
+				    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="keyword" aria-label="Search" value="{{ keyword }}">
+				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					<div class="status-bar bb-1 clearfix w-100 py-3 my-3">
+						<select class="pull-right" name="hierarchy" id="select-hierarchy">
+							<option selected value="all">전체</option>
+						{% for label, value in hierarchy %}
+							<option value="{{ value }}"{% if current_type == value %} selected{% endif %}>{{ label }}</option>
+						{% endfor %}
+						</select>
+						<span>{{ keword }} 검색 결과 총 - {{ results.total }}</span>
+					</div>
+				</form>
+			</div>
+			<div class="content-body">
+			{% if results.total %}
+				<ul class="list-unstyled">
+				{% for result in results %}
+					<li class="bb-1 my-3 py-3">
+						<h5 class="sp"><a href="/promise/{{ result.sp_no }}">{{ result.sp_title | replace({(keyword): '<span class="highlight" style="color: blue">' ~ (keyword) ~ '</span>'}) | raw }}</a></h5>
+						<ul class="meta list-inline text-primary">
+							<li class="list-inline-item">{{ result.pv_title }}  ></li>
+							<li class="list-inline-item">{{ result.pp_title }}  ></li>
+							<li class="list-inline-item">{{ result.ppk_title }}</li>
+						</ul>
+					</li>
+				{% endfor %}
+				</ul>
+				{{ results.render('pagination.twig') | raw }}
+			{% else %}
+				<p class="text-center text-muted">검색 결과가 없습니다.</p>
+			{% endif %}
+			</div>
+		</div>
+		<div id="sidebar" class="col-md-3">
+			{% include 'sidebar.twig' %}
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

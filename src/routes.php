@@ -45,7 +45,7 @@ $app->get('/promises', function (Request $request, Response $response, array $ar
 
 // 분류별 공약
 $app->get('/promises/t/{type}[/{term_id}]', function (Request $request, Response $response, array $args) {
-    
+
     $taxonomy_types = $this->common->taxonomy_types;
     $status = $this->common->status;
 
@@ -54,7 +54,7 @@ $app->get('/promises/t/{type}[/{term_id}]', function (Request $request, Response
 
     $term_id = $args['term_id'] ?? '';
     $current_taxonomy_type = '';
-    
+
     $terms = [];
     $term_ids = [];
     $promises = [];
@@ -140,7 +140,7 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
     catch(Slim\Exception\NotFoundException $e) {
     	throw new \Slim\Exception\NotFoundException($request, $response);
     }
-    
+
     $args = [
 		'promise' => $promise,
 		'status' => $status,
@@ -171,7 +171,7 @@ $app->get('/notice/{id}', function (Request $request, Response $response, array 
     catch(Slim\Exception\NotFoundException $e) {
         throw new \Slim\Exception\NotFoundException($request, $response);
     }
-    
+
     $args = [
         'status' => $status,
         'groups' => $groups,
@@ -181,4 +181,76 @@ $app->get('/notice/{id}', function (Request $request, Response $response, array 
 
     return $this->view->render($response, 'notice.twig', $args);
 })->setName('promises');
+
+// 검색
+$app->get('/search', function (Request $request, Response $response, array $args) {
+
+    $groups = $this->common->get_promise_status();
+    $notices = $this->common->get_recent_notices();
+
+    $hierarchy = $this->common->hierarchy;
+    
+    $keyword = $request->getQueryParam('keyword') ?? '';
+    $type = $request->getQueryParam('hierarchy') ?? 'all';
+    $currentPage = $request->getQueryParam('page') ?? 1;
+    $all_params = $request->getQueryParams();
+    unset($all_params['page']);
+    $current_url = '/search?' . http_build_query($all_params);
+    
+    \Illuminate\Pagination\Paginator::currentPageResolver(function () use ($currentPage) {
+        return $currentPage;
+    });
+    
+    $results = $this->db->table('full_promise');
+    if (in_array($type, $hierarchy)) {
+        $results = $results->where(function($query) use ($type, $keyword) {
+            $query->where($type, 'LIKE', '%' . $keyword . '%');
+        })->paginate(15);
+    } else {
+        $results = $results->where(function($query) use ($keyword) {
+            $query->where('pv_title', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('pp_title', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('ppk_title', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('mp_title', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('sp_title', 'LIKE', '%' . $keyword . '%');
+        })->paginate(15);
+    }
+    $results->setPath($current_url);
+
+    $view = $this->view;
+    $view->getEnvironment()->addTest(new Twig_SimpleTest('string', function($value) {
+        return is_string($value);
+    }));
+
+    \Illuminate\Pagination\Paginator::viewFactoryResolver(function() use ($view) {
+        return new class($view) {
+            private $view, $template, $data;
+
+            public function __construct(\Slim\Views\Twig $view) {
+                $this->view = $view;
+            }
+
+            public function make(string $template, $data = null) {
+                $this->template = $template;
+                $this->data = $data;
+                return $this;
+            }
+
+            public function render() {
+                return $this->view->fetch($this->template, $this->data);
+            }
+        };
+    });
+
+    $args = [
+        'groups' => $groups,
+        'notices' => $notices,
+        'hierarchy' => $hierarchy,
+        'current_type' => $type,
+        'keyword' => $keyword,
+        'results' => $results,
+    ];
+    return $this->view->render($response, 'search.twig', $args);
+})->setName('search');
+
 

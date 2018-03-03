@@ -7,13 +7,13 @@ class Common {
     protected $ci;
     // 공약 상태 코드
     public $status = [
-        "평가안됨",
-        "시작안함",
-        "진행중",
-        "변경",
-        "지체",
-        "파기",
-        "완료"
+        '평가안됨',
+        '시작안함',
+        '진행중',
+        '변경',
+        '지체',
+        '파기',
+        '완료'
     ];
     public $total_promises_count = 888;
     // 공약 분류 형식
@@ -21,6 +21,14 @@ class Common {
         'category' => '분류',
         'theme' => '테마',
         'hierarchy' => '수혜 계층'
+    ];
+    // 공약 위계
+    public $hierarchy = [
+        '4대 비전' => 'pv_title',
+        '12대 공약' => 'pp_title',
+        '주제' => 'ppk_title',
+        '메인 약속' => 'mp_title',
+        '세부 약속' => 'sp_title'
     ];
   
     //Constructor
@@ -142,5 +150,5 @@ class Common {
     public function get_the_notice($id) {
         return $this->ci->db->table('notice')->where('n_no', $id)->get()->first();
     }
-
+    
 }
