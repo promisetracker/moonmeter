@@ -7,6 +7,13 @@
 
 <div id="frontCarousel">
 	<div class="container">
+		<div class="position-absolute" style="left: 40%; top: 20%">
+			<p class="text-center lead text-primary"><strong>문재인 정부의 공약을 검색해보세요!</strong></p>
+			<form class="form-inline mt-2 mt-md-0" action="/search" method="get" onchange="$(this).submit()">
+			    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="keyword" aria-label="Search" value="{{ keyword }}">
+			    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
 		<img src="/assets/carousel-main.png" class="img-fluid" alt="first">
 	</div>
 </div>

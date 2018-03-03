@@ -17,24 +17,29 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-center" id="navbarCollapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item{% if is_current_path('about') %} active{% endif %}">
+                            <li class="nav-item px-3{% if is_current_path('about') %} active{% endif %}">
                                 <a class="nav-link" href="/about">문미터소개</a>
                             </li>
-                            <li class="nav-item{% if is_current_path('promises') %} active{% endif %}">
+                            <li class="nav-item px-3{% if is_current_path('promises') %} active{% endif %}">
                                 <a class="nav-link" href="/promises">문제인공약</a>
                             </li>
-                            <li class="nav-item{% if is_current_path('promises') %} active{% endif %}">
+                            <li class="nav-item px-3{% if is_current_path('promises_by_type', {'type': 'category'}) %} active{% endif %}">
                                 <a class="nav-link" href="/promises/t/category">분류별 공약</a>
                             </li>
-                            <li class="nav-item{% if is_current_path('help') %} active{% endif %}">
+                            <li class="nav-item px-3{% if is_current_path('help') %} active{% endif %}">
                                 <a class="nav-link" href="/help">도와주세요</a>
                             </li>
                         </ul>
                     </div>
-                    <form class="form-inline mt-2 mt-md-0" action="/search" method="get">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="keyword" aria-label="Search" value="{{ keyword }}">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <div class="navbar-right">
+                        <form class="search-form" action="/search" method="get">
+                            <div class="form-group float-right mt-2 ml-2" id="search">
+                                <input class="form-control" type="text" placeholder="Search" name="keyword" aria-label="Search" value="{{ keyword }}">
+                                <button class="btn btn-outline-success my-2 my-sm-0 form-control-submit" type="submit">Search</button>
+                                <span class="search-label pt-1"><i class="fa fa-2x fa-search"></i>
+                            </span>
+                        </form>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -81,10 +86,15 @@
         <script>
             WebFont.load({
                 custom: {
-                    families: ['Spoqa Han Sans:n3,n7', 'FontAwesome'],
+                    families: [
+                        'Spoqa Han Sans:n3,n7',
+                        'FontAwesome',
+                        'NanumSquareRound'
+                    ],
                     urls: [
                         '//cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/2.1.1/css/SpoqaHanSans-kr.min.css',
-                        '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+                        '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+                        '//cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css'
                     ]
                 }
             });

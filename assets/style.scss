@@ -113,3 +113,89 @@
 		}
 	}
 }
+
+.search-form .form-group input.form-control::-webkit-input-placeholder{
+	display:none;
+}
+.search-form .form-group input.form-control::-moz-placeholder{
+	display:none;
+}
+.navbar-right {
+	min-width: 240px; /*or I can probably just use columns*/
+}
+.navbar-right form{
+	width: 100%;
+}
+.form-group{
+	position:relative;
+	width:0%;
+	min-width:60px;
+	height:60px;
+	overflow:hidden;
+	transition: width 1s;
+	backface-visibility:hidden;
+}
+.form-group input.form-control{
+	position:absolute;
+	top:0;
+	right:0;
+	outline:none;
+	width:100%;
+	height:60px;
+	margin:0;
+	z-index:10;
+}
+input[type="text"].form-control{
+	-webkit-appearence:none;
+	-webkit-border-radius:0;
+}
+.form-control-submit,
+.search-label{
+	width:60px;
+	height:60px;
+	position:absolute;
+	right:0;
+	top:0;
+	padding:0;
+	margin:0;
+	text-align:center;
+	cursor:pointer;
+	line-height:60px;
+	background:white;
+}
+.form-control-submit{
+	background:#fff; /*stupid IE*/
+	opacity: 0;
+	color:transparent;
+	border:none;
+	outline:none;
+	z-index:-1;
+}
+.search-label{
+	z-index:90;
+}
+.form-group.sb-search-open,
+.no-js .sb-search-open{
+	width:100%;
+}
+.form-group.sb-search-open .search-label,
+.no-js .sb-search .search-label {
+	background: #ccc;
+	color: #fff;
+	z-index: 11;
+}
+.form-group.sb-search-open .form-control-submit,
+.no-js .form-control .form-control-submit {
+	z-index: 90;
+}
+
+.global .navbar-collapse a {
+	font-family: 'NanumSquareRound';
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #000;
+}
