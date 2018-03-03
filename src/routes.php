@@ -140,11 +140,8 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
     catch(Slim\Exception\NotFoundException $e) {
     	throw new \Slim\Exception\NotFoundException($request, $response);
     }
-
-    $groups = $this->common->get_promise_status();
     
     $args = [
-        'total_promises_count' => $this->common->total_promises_count,
 		'promise' => $promise,
 		'status' => $status,
 		'note' => $note,
