@@ -24,12 +24,12 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 })->setName('front');
 
 // 소개
-$app->get('/about', function (Request $request, Response $response, array$args) {
+$app->get('/about', function (Request $request, Response $response, array $args) {
 	return $this->view->render($response, 'about.twig', $args);
 })->setName('about');
 
 // 문재인 공약
-$app->get('/promises', function (Request $request, Response $response, array$args) {
+$app->get('/promises', function (Request $request, Response $response, array $args) {
     $groups = $this->common->get_promise_status();
     $full_promises = $this->common->get_full_promises();
     $full_promises_array = $this->common->array_group_by($full_promises, 'pv_title', 'pp_title', 'ppk_title', 'mp_title');
@@ -44,7 +44,7 @@ $app->get('/promises', function (Request $request, Response $response, array$arg
 })->setName('promises');
 
 // 분류별 공약
-$app->get('/promises/t/{type}[/{term_id}]', function (Request $request, Response $response, array$args) {
+$app->get('/promises/t/{type}[/{term_id}]', function (Request $request, Response $response, array $args) {
     
     $taxonomy_types = $this->common->taxonomy_types;
     $status = $this->common->status;
@@ -89,7 +89,7 @@ $app->get('/promises/t/{type}[/{term_id}]', function (Request $request, Response
 
 
 // 문재인 공약 비전 상세
-$app->get('/promises/v/{vision_id}', function (Request $request, Response $response, array$args) {
+$app->get('/promises/v/{vision_id}', function (Request $request, Response $response, array $args) {
 
     $vision_id = $args['vision_id'];
     $groups = $this->common->get_promise_status();
@@ -116,15 +116,17 @@ $app->get('/promises/v/{vision_id}', function (Request $request, Response $respo
 });
 
 // 도와주세요?
-$app->get('/help', function (Request $request, Response $response, array$args) {
+$app->get('/help', function (Request $request, Response $response, array $args) {
 	return $this->view->render($response, 'help.twig', $args);
 })->setName('help');
 
 // 공약 상세
-$app->get('/promise/{id}', function (Request $request, Response $response, array$args) {
+$app->get('/promise/{id}', function (Request $request, Response $response, array $args) {
 
 	$id = $args['id'];
 	$status = $this->common->status;
+    $groups = $this->common->get_promise_status();
+    $notices = $this->common->get_recent_notices();
 	$priomise = [];
 
 	try {
@@ -147,7 +149,8 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
 		'status' => $status,
 		'note' => $note,
 		'articles' => $articles,
-        'groups' => $groups
+        'groups' => $groups,
+        'notices' => $notices
 	];
 
 	return $this->view->render($response, 'promise.twig', $args);

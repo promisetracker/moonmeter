@@ -82,58 +82,8 @@
 
 		</div>
 
-		<div id="sidebar" class="col-md-4">
-			<div class="block status mt-4">
-				<div class="status-date float-right">{{ date }}</div>
-				<h4 class="bb-1 py-3">공약이행 단계별 상황</h4>
-				<ul class="list-unstyled">
-{% for group in groups %}
-					<li>
-						<div class="row py-2">
-							<div class="col-md-3">{{ group.title }}</div>
-							<div class="col-md-7 py-1">
-								<div class="progress">
-									<div class="progress-bar" role="progressbar" style="width: {{ group.percent }}%" aria-valuenow="{{ group.total }}" aria-valuemin="0" aria-valuemax="{{ total_promises_count }}"></div>
-								</div>
-							</div>
-							<div class="col-md-1 text-right">{{ group.total }}</div>
-						</div>
-						
-					</li>
-{% endfor %}
-				</ul>
-			</div>
-			<div class="block overview bg-light">
-				
-				<h2 class="text-primary text-center p-3">공약 한눈에 보기</h2>
-
-				<div class="promise-by-category row bb-1 p-1 m-0">
-					<div class="col-md-4">
-						<img class="img-fluid" src="/assets/pledge-by-category-sm.png">
-					</div>
-					<div class="col-md-8">
-						<h5 class="card-title">분류별 공약</h5>
-						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며...</p>
-					</div>
-				</div>
-
-				<div class="promise-by-theme row bb-1 p-1 m-0">
-					<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-theme-sm.png"></div>
-					<div class="col-md-8">
-						<h5 class="card-title">테마별 공약</h5>
-						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며...</p>
-					</div>
-				</div>
-
-				<div class="promise-by-people row bb-1 p-1 m-0">
-					<div class="col-md-4"><img class="img-fluid float-left" src="/assets/pledge-by-people-sm.png"></div>
-					<div class="col-md-8">
-						<h5 class="card-title">수혜 계층별 공약</h5>
-						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고 유지하며...</p>
-					</div>
-				</div>
-
-			</div>
+		<div id="sidebar" class="col-md-3">
+			{% include 'sidebar.twig' %}
 		</div>
 	</div>
 </div>
