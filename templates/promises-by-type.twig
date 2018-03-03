@@ -8,6 +8,11 @@
 
 	<div class="row">
 		<div id="content" class="col-md-9">
+			<ul class="temp list-inline">
+				<li class="list-inline-item"><a class="btn btn-info" href="/promises/t/category">분류별 공약</a></li>
+				<li class="list-inline-item"><a class="btn btn-info" href="/promises/t/theme">테마별 공약</a></li>
+				<li class="list-inline-item"><a class="btn btn-info" href="/promises/t/hierarchy">수혜 계층별 공약</a></li>
+			</ul>
 			<div class="content-header">
 				<form action="" id="select-term" method="GET" class="float-right">
 					<select name="term" onchange="if (this.value) window.location.href='/promises/t/{{ type }}/' + this.value">
