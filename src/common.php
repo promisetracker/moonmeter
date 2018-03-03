@@ -139,4 +139,8 @@ class Common {
         return $this->ci->db->table('full_promise')->whereIn('sp_no', $ids)->get()->toArray();
     }
 
+    public function get_the_notice($id) {
+        return $this->ci->db->table('notice')->where('n_no', $id)->get()->first();
+    }
+
 }

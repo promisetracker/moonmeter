@@ -153,3 +153,32 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
 	return $this->view->render($response, 'promise.twig', $args);
 })->setName('promises');
 
+// 공지 상세
+$app->get('/notice/{id}', function (Request $request, Response $response, array $args) {
+
+    $id = $args['id'];
+    $status = $this->common->status;
+    $groups = $this->common->get_promise_status();
+    $notices = $this->common->get_recent_notices();
+    $notice = [];
+
+    try {
+        $notice = $this->common->get_the_notice($id);
+        if (empty($notice)) {
+            throw new \Slim\Exception\NotFoundException($request, $response);
+        }
+    }
+    catch(Slim\Exception\NotFoundException $e) {
+        throw new \Slim\Exception\NotFoundException($request, $response);
+    }
+    
+    $args = [
+        'status' => $status,
+        'groups' => $groups,
+        'notices' => $notices,
+        'notice' => $notice,
+    ];
+
+    return $this->view->render($response, 'notice.twig', $args);
+})->setName('promises');
+

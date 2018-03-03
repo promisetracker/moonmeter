@@ -1,0 +1,26 @@
+{% extends "layout.twig" %}
+{% block title %}문미터 - 공약제크 프로젝트{% endblock %}
+{% block content %}
+
+<div class="container promises">
+
+	<div class="row">
+		<div id="content" class="col-md-9">
+			<div class="content-header">
+				<h1 class="page-title">공지</h1>
+				<h2>{{ notice.n_title }}</h2>
+			</div>
+
+			<div class="content-body">
+				{{ notice.n_content }}
+			</div>
+		</div>
+
+		<div id="sidebar" class="col-md-3">
+			{% include 'sidebar.twig' %}
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
