@@ -9,8 +9,8 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 
     $this->common->sync_disqus_popular_posts();
 
-    $hot_promises = $this->common->get_hot_promises();
-    $popular_promises = $this->common->get_disqus_popular_posts();
+    $hot_promises = $this->common->get_disqus_popular_posts();
+    $popular_promises = $this->common->get_hot_promises();
 
     $status = $this->common->status;
     $groups = $this->common->get_promise_status();

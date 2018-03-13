@@ -46,7 +46,7 @@
 											<ul class="list-inline text-muted">
 												<li class="list-inline-item"><small>조회수 {{ hot_promise.view_count }}</small>
 												</li>
-												<li class="list-inline-item"><small>댓글 <span class="disqus-comment-count" data-disqus-url="http://localhost:8080/promise/{{ hot_promise.sp_no }}">0</span></small></li>
+												<li class="list-inline-item"><small>댓글 {{ hot_promise.count }}</small></li>
 											</ul>
 										</div>
 										{# <div class="col-md-2">
@@ -58,7 +58,7 @@
 						{% else %}
 								<li>
 									<div class="row bb-1 py-2 text-center">
-										<p class="lead w-100">댓글 달린 공약이 없습니다.</p>
+										<p class="lead w-100">쟁점 공약이 없습니다.</p>
 									</div>
 								</li>
 							</ul>
@@ -79,7 +79,7 @@
 											<ul class="list-inline text-muted">
 												<li class="list-inline-item"><small>조회수 {{ popular_promise.view_count }}</small>
 												</li>
-												<li class="list-inline-item"><small>댓글 {{ popular_promise.count }}</small></li>
+												<li class="list-inline-item"><small>댓글 <span class="disqus-comment-count" data-disqus-url="http://moonmeter.kr/promise/{{ hot_promise.sp_no }}">0</span></small></li>
 											</ul>
 										</div>
 										{# <div class="col-md-2">
@@ -91,7 +91,7 @@
 						{% else %}
 								<li>
 									<div class="row bb-1 py-2 text-center">
-										<p class="lead w-100">댓글 달린 공약이 없습니다.</p>
+										<p class="lead w-100"> 인기 공약이 없습니다.</p>
 									</div>
 								</li>
 							</ul>
