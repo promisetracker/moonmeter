@@ -5,17 +5,21 @@
 
 {% block content %}
 
-<div id="frontCarousel">
-	<div class="container">
-		<div class="position-absolute" style="left: 40%; top: 20%">
-			<p class="text-center lead text-primary"><strong>문재인 정부의 공약을 검색해보세요!</strong></p>
-			<form class="form-inline mt-2 mt-md-0" action="/search" method="get" onchange="$(this).submit()">
-			    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="keyword" aria-label="Search" value="{{ keyword }}">
-			    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+<div id="front-carousel">
+	<div class="container d-none d-md-block">
+		<div class="row d-flex align-items-center flex-column" style="background: url('/assets/carousel-main.png') no-repeat; height: 420px;">
+			<div style="margin-top: 5rem;">
+				<p class="text-center lead text-primary" style="font-size: 2.5rem;"><strong style="font-size: 3rem; font-weight: bold;">문재인 정부의 공약</strong>을 검색해보세요!</p>
+				<form class="form-inline mt-2 mt-md-0" action="/search" method="get" onchange="$(this).submit()">
+				    <div class="input-group col-6 mx-auto">
+				      <input class="form-control p-3" type="text" placeholder="검색" name="keyword" aria-label="Search" value="{{ keyword }}">
+				      <div class="input-group-addon" style="margin: .8rem 0 0 -3rem; z-index: 10;"><i class="fa fa-2x fa-search text-muted"></i></div>
+				    </div>
+				</form>
+			</div>
 		</div>
-		<img src="/assets/carousel-main.png" class="img-fluid" alt="first">
 	</div>
+	
 </div>
 
 <section id="promises">
@@ -30,49 +34,68 @@
 					<div class="tab-content col-md-9" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="v-pills-first" role="tabpanel" aria-labelledby="v-pills-first-tab">
 							<ul class="list-unstyled">
-							{% for activePromise in activePromises %}
+						{% if hot_promises | length > 0 %}
+							{% for hot_promise in hot_promises %}
 								<li>
 									<div class="row bb-1 py-2">
 										<div class="col-md-1">
 											{{ loop.index }}
 										</div>
-										<div class="col-md-9">
-											<a href="/promise/{{ activePromise.sp_no }}">{{ activePromise.sp_title }}</a> <span class="badge badge-info">{{ status[activePromise.promise_level] }}</span>
+										<div class="col-md-10">
+											<a href="/promise/{{ hot_promise.sp_no }}">{{ hot_promise.sp_title }}</a> <span class="badge badge-info">{{ status[hot_promise.promise_level] }}</span>
 											<ul class="list-inline text-muted">
-												<li class="list-inline-item"><small>조회수 000</small></li>
-												<li class="list-inline-item"><small>댓글 000</small></li>
+												<li class="list-inline-item"><small>조회수 {{ hot_promise.view_count }}</small>
+												</li>
+												<li class="list-inline-item"><small>댓글 <span class="disqus-comment-count" data-disqus-url="http://localhost:8080/promise/{{ hot_promise.sp_no }}">0</span></small></li>
 											</ul>
 										</div>
-										<div class="col-md-2">
+										{# <div class="col-md-2">
 											<i class="fa fa-arrow-up"></i>&nbsp;{{ loop.index }}
-										</div>
+										</div> #}
 									</div>
 								</li>
 							{% endfor %}
+						{% else %}
+								<li>
+									<div class="row bb-1 py-2 text-center">
+										<p class="lead w-100">댓글 달린 공약이 없습니다.</p>
+									</div>
+								</li>
+							</ul>
+						{% endif %}
 							</ul>
 						</div>
 						<div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 							<ul class="list-unstyled">
-							{% for activePromise in activePromises %}
+						{% if popular_promises | length > 0 %}
+							{% for popular_promise in popular_promises %}
 								<li>
 									<div class="row bb-1 py-2">
 										<div class="col-md-1">
 											{{ loop.index }}
 										</div>
-										<div class="col-md-9">
-											<a href="/promise/{{ activePromise.sp_no }}">{{ activePromise.sp_title }}</a> <span class="badge badge-info">{{ status[activePromise.promise_level] }}</span>
+										<div class="col-md-10">
+											<a href="/promise/{{ popular_promise.sp_no }}">{{ popular_promise.sp_title }}</a> <span class="badge badge-info">{{ status[popular_promise.promise_level] }}</span>
 											<ul class="list-inline text-muted">
-												<li class="list-inline-item"><small>조회수 000</small></li>
-												<li class="list-inline-item"><small>댓글 000</small></li>
+												<li class="list-inline-item"><small>조회수 {{ popular_promise.view_count }}</small>
+												</li>
+												<li class="list-inline-item"><small>댓글 {{ popular_promise.count }}</small></li>
 											</ul>
 										</div>
-										<div class="col-md-2">
+										{# <div class="col-md-2">
 											<i class="fa fa-arrow-up"></i>&nbsp;{{ loop.index }}
-										</div>
+										</div> #}
 									</div>
 								</li>
 							{% endfor %}
+						{% else %}
+								<li>
+									<div class="row bb-1 py-2 text-center">
+										<p class="lead w-100">댓글 달린 공약이 없습니다.</p>
+									</div>
+								</li>
 							</ul>
+						{% endif %}
 						</div>
 					</div>
 				</div>
@@ -112,9 +135,11 @@
 				<div class="card mb-4 box-shadow">
 					<img class="card-img-top" src="/assets/pledge-by-category.png" />
 					<div class="card-body">
-						<h4 class="card-title">분류별 공약</h4>
-						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고
-유지하며 행사하는 활동으로, 국민들이 인간다운 삶을 영위하게 하고 상호 간의 이해를 조정하며, 사회 질서를 바로잡는 따위의 역할을 한다.</p>
+						<a href="/promises/t/category">
+							<h4 class="card-title">분류별 공약</h4>
+							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고
+	유지하며 행사하는 활동으로, 국민들이 인간다운 삶을 영위하게 하고 상호 간의 이해를 조정하며, 사회 질서를 바로잡는 따위의 역할을 한다.</p>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -123,9 +148,11 @@
 				<div class="card mb-4 box-shadow">
 					<img class="card-img-top" src="/assets/pledge-by-theme.png" />
 					<div class="card-body">
-						<h4 class="card-title">테마별 공약</h4>
-						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고
-유지하며 행사하는 활동으로, 국민들이 인간다운 삶을 영위하게 하고 상호 간의 이해를 조정하며, 사회 질서를 바로잡는 따위의 역할을 한다.</p>
+						<a href="/promises/t/theme">
+							<h4 class="card-title">테마별 공약</h4>
+							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고
+	유지하며 행사하는 활동으로, 국민들이 인간다운 삶을 영위하게 하고 상호 간의 이해를 조정하며, 사회 질서를 바로잡는 따위의 역할을 한다.</p>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -134,9 +161,11 @@
 				<div class="card mb-4 box-shadow">
 					<img class="card-img-top" src="/assets/pledge-by-people.png" />
 					<div class="card-body">
-						<h4 class="card-title">수혜 계층별 공약</h4>
-						<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고
-유지하며 행사하는 활동으로, 국민들이 인간다운 삶을 영위하게 하고 상호 간의 이해를 조정하며, 사회 질서를 바로잡는 따위의 역할을 한다.</p>
+						<a href="/promises/t/hierarchy">
+							<h4 class="card-title">수혜 계층별 공약</h4>
+							<p class="card-text">나라를 다스리는 일. 국가의 권력을 획득하고
+	유지하며 행사하는 활동으로, 국민들이 인간다운 삶을 영위하게 하고 상호 간의 이해를 조정하며, 사회 질서를 바로잡는 따위의 역할을 한다.</p>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -194,5 +223,5 @@
 	</div>
 </section>
 
-
+<script id="dsq-count-scr" src="//moonmeter.disqus.com/count.js" async></script>
 {% endblock %}

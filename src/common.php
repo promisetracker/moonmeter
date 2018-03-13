@@ -150,5 +150,64 @@ class Common {
     public function get_the_notice($id) {
         return $this->ci->db->table('notice')->where('n_no', $id)->get()->first();
     }
+
+    public function increase_promise_view_count($sp_no) {
+        $this->ci->db->table('sub_promise')->where('sp_no', $sp_no)->increment('view_count');
+    }
+
+    public function get_hot_promises() {
+        return $this->ci->db->table('sub_promise')
+            ->where('sub_promise.promise_level', '<>', '0')->orderBy('view_count', 'desc')->offset(0)->limit(5)->get();
+    }
+
+    public function sync_disqus_popular_posts() {
+        $disqus = $this->ci->get('settings')['disqus'];
+        $query = http_build_query($disqus);
+        $disqus_popular_url = getenv('DISQUS_POPULAR_URL');
+        $disqus_api_request = $disqus_popular_url . '?' . $query;
+
+        $disqus_cache_file = $this->ci->get('settings')['view']['twig']['cache'] . '/disqus_popular_posts.json';
+        $disqus_cache = '';
+
+        if (!file_exists($disqus_cache_file)) {
+            file_put_contents($disqus_cache_file, file_get_contents($disqus_api_request));
+        } else {
+            $disqus_cache = file_get_contents($disqus_cache_file);
+            $disqus_api_response = file_get_contents($disqus_api_request);
+            if ($disqus_cache == $disqus_api_response) {
+                $this->ci->logger->info('[disqus sync] Same... ');
+                return;
+            } else {
+                file_put_contents($disqus_cache_file, $disqus_api_response);
+            }
+        }
+
+        $disqus_cache = file_get_contents($disqus_cache_file);
+        $results = json_decode($disqus_cache);
+        $posts = $results->response;
+        $this->ci->logger->info(print_r($posts, true));
+
+        if (count($posts) > 0) {
+            $item = '';
+            $this->ci->db->table('disqus_popular_posts')->truncate();
+            foreach ($posts as $key => $post) {
+                $path = parse_url($post->link, PHP_URL_PATH);
+                $pathes = explode('/', $path);
+                $id = end($pathes);
+                $item = [
+                    'sp_no' => $id,
+                    'count' => $post->posts
+                ];
+                $this->ci->db->table('disqus_popular_posts')->insert($item);
+            }
+        }
+    }
+
+    public function get_disqus_popular_posts() {
+        return $this->ci->db->table('sub_promise')
+            ->select('sub_promise.*', 'disqus_popular_posts.count')
+            ->join('disqus_popular_posts', 'disqus_popular_posts.sp_no', '=', 'sub_promise.sp_no')
+            ->orderBy('disqus_popular_posts.count', 'desc')->offset(0)->limit(5)->get();
+    }
     
 }

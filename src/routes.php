@@ -7,15 +7,18 @@ use Slim\Views\Twig;
 // 초기 화면
 $app->get('/', function (Request $request, Response $response, array $args) {
 
-    // Render index view
-    $activePromises = $this->db->table('sub_promise')->where('promise_level', '<>', '0')->orderBy('promise_level', 'desc')->offset(0)->limit(5)->get();
+    $this->common->sync_disqus_popular_posts();
+
+    $hot_promises = $this->common->get_hot_promises();
+    $popular_promises = $this->common->get_disqus_popular_posts();
 
     $status = $this->common->status;
     $groups = $this->common->get_promise_status();
     $notices = $this->common->get_recent_notices();
 
     $args += [
-    	'activePromises' => $activePromises,
+    	'hot_promises' => $hot_promises,
+        'popular_promises' => $popular_promises,
     	'status' => $status,
         'groups' => $groups,
         'notices' => $notices
@@ -136,6 +139,7 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
     	}
     	$note = $this->common->get_promise_note($id);
     	$articles = $this->common->get_promise_related_articles($id)->all();
+        $this->common->increase_promise_view_count($id);
     }
     catch(Slim\Exception\NotFoundException $e) {
     	throw new \Slim\Exception\NotFoundException($request, $response);
@@ -189,18 +193,18 @@ $app->get('/search', function (Request $request, Response $response, array $args
     $notices = $this->common->get_recent_notices();
 
     $hierarchy = $this->common->hierarchy;
-    
+
     $keyword = $request->getQueryParam('keyword') ?? '';
     $type = $request->getQueryParam('hierarchy') ?? 'all';
     $currentPage = $request->getQueryParam('page') ?? 1;
     $all_params = $request->getQueryParams();
     unset($all_params['page']);
     $current_url = '/search?' . http_build_query($all_params);
-    
+
     \Illuminate\Pagination\Paginator::currentPageResolver(function () use ($currentPage) {
         return $currentPage;
     });
-    
+
     $results = $this->db->table('full_promise');
     if (in_array($type, $hierarchy)) {
         $results = $results->where(function($query) use ($type, $keyword) {

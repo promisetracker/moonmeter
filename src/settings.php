@@ -27,6 +27,13 @@ return [
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
+        ],
+        // Comments
+        'disqus' => [
+            'api_key' => getenv('DISQUS_API_KEY', true),
+            'interval' => '90d',
+            'forum' => 'moonmeter',
+            'limit' => 5
         ]
     ],
 ];

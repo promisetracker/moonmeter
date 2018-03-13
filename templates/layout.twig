@@ -8,7 +8,7 @@
     {% endblock %}
     </head>
     <body>
-        <header class="global">
+        <header class="global bb-1">
             <nav class="navbar navbar-expand-md navbar-light">
                 <div class="container">
                     <a class="navbar-brand" href="/"><img src="/assets/logo.png" alt="logo"></a>
@@ -21,7 +21,7 @@
                                 <a class="nav-link" href="/about">문미터소개</a>
                             </li>
                             <li class="nav-item px-3{% if is_current_path('promises') %} active{% endif %}">
-                                <a class="nav-link" href="/promises">문제인공약</a>
+                                <a class="nav-link" href="/promises">문재인공약</a>
                             </li>
                             <li class="nav-item px-3{% if is_current_path('promises_by_type', {'type': 'category'}) %} active{% endif %}">
                                 <a class="nav-link" href="/promises/t/category">분류별 공약</a>
@@ -57,9 +57,9 @@
                     <h6>Menu</h6>
                     <ul class="list-unstyled">
                         <li><a href="/about">문미터소개</a></li>
-                        <li><a href="/promises"></a>공약</li>
-                        <li><a href="/promises/category"></a>분류별 공약</li>
-                        <li><a href="/help"></a>도와주세요</li>
+                        <li><a href="/promises">공약</a></li>
+                        <li><a href="/promises/t/category">분류별 공약</a></li>
+                        <li><a href="/help">도와주세요</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
