@@ -162,6 +162,8 @@ class Common {
 
     public function sync_disqus_popular_posts() {
         $disqus = $this->ci->get('settings')['disqus'];
+        $disqus['api_key'] = getenv('DISQUS_API_KEY');
+        
         $query = http_build_query($disqus);
         $disqus_popular_url = getenv('DISQUS_POPULAR_URL');
         $disqus_api_request = $disqus_popular_url . '?' . $query;
