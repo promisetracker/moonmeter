@@ -166,6 +166,8 @@ class Common {
         $disqus_popular_url = getenv('DISQUS_POPULAR_URL');
         $disqus_api_request = $disqus_popular_url . '?' . $query;
 
+        $this->ci->logger->notice($disqus_api_request);
+
         $disqus_cache_file = $this->ci->get('settings')['view']['twig']['cache'] . '/disqus_popular_posts.json';
         $disqus_cache = '';
 

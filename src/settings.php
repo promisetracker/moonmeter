@@ -30,7 +30,7 @@ return [
         ],
         // Comments
         'disqus' => [
-            'api_key' => getenv('DISQUS_API_KEY', true),
+            'api_key' => getenv('DISQUS_API_KEY', true) ? getenv('DISQUS_API_KEY') : '',
             'interval' => '90d',
             'forum' => 'moonmeter',
             'limit' => 5
