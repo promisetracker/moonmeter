@@ -39,6 +39,27 @@
 }
 
 .promise.detail {
+	h1 {
+		font-size: 1.6rem;
+		font-weight: bold;
+		line-height: 1.4;
+	}
+	h3 {
+		font-size: 1.1rem;
+		padding-bottom: .5rem;
+		margin-bottom: .5rem;
+		border-bottom: 1px solid #ccc;
+	}
+	.list-inline-item img {
+		max-width: 32px;
+	}
+	.status {
+		.text-success.lead {
+			font-weight: bold;
+			text-align: center;
+			font-size: 1.6rem;
+		}
+	}
 	#sidebar {
 		.block.overview {
 			background-color: $light;
@@ -198,4 +219,8 @@ input[type="text"].form-control{
 
 .navbar-light .navbar-nav .nav-link {
 	color: #000;
+}
+
+header.global nav {
+	border-bottom: 1px solid #ccc;
 }

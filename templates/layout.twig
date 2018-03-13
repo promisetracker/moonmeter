@@ -8,8 +8,8 @@
     {% endblock %}
     </head>
     <body>
-        <header class="global bb-1">
-            <nav class="navbar navbar-expand-md navbar-light">
+        <header class="global" style="margin-bottom: 100px;">
+            <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
                 <div class="container">
                     <a class="navbar-brand" href="/"><img src="/assets/logo.png" alt="logo"></a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,8 +34,8 @@
                     <div class="navbar-right">
                         <form class="search-form" action="/search" method="get">
                             <div class="form-group float-right mt-2 ml-2" id="search">
-                                <input class="form-control" type="text" placeholder="Search" name="keyword" aria-label="Search" value="{{ keyword }}">
-                                <button class="btn btn-outline-success my-2 my-sm-0 form-control-submit" type="submit">Search</button>
+                                <input class="form-control" type="text" placeholder="검색" name="keyword" aria-label="Search" value="{{ keyword }}">
+                                <button class="btn btn-outline-success my-2 my-sm-0 form-control-submit" type="submit">검색</button>
                                 <span class="search-label pt-1"><i class="fa fa-2x fa-search"></i>
                             </span>
                         </form>
@@ -44,39 +44,42 @@
             </nav>
         </header>
 
-        <div id="content">
+        <div id="content-container">
             {% block content %}{% endblock %}
         </div>
 
-        <footer class="container global">
-            <div class="row mt-5 d-flex justify-content-center">
-                <div class="col-md-2">
-                    <img src="/assets/logo-footer.png" alt="logo">
+        <footer class="global bg-light mt-5" style="border-top: 1px solid #ccc;">
+            <div class="container">
+                <div class="row mt-5 d-flex justify-content-center">
+                    <div class="col-md-2">
+                        <img src="/assets/logo-footer.png" alt="logo">
+                    </div>
+                    <div class="col-md-2">
+                        <h6>Menu</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="/about">문미터소개</a></li>
+                            <li><a href="/promises">공약</a></li>
+                            <li><a href="/promises/t/category">분류별 공약</a></li>
+                            <li><a href="/help">도와주세요</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <h6>Contact Info</h6>
+                        <ul class="list-unstyled">
+                            <li>연락처</li>
+                            <li>이메일</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <h6>Quick Link</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="">페이스북</a></li>
+                            <li><a href="">트위터</a></li>
+                            <li><a href="">블로그</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <h6>Menu</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="/about">문미터소개</a></li>
-                        <li><a href="/promises">공약</a></li>
-                        <li><a href="/promises/t/category">분류별 공약</a></li>
-                        <li><a href="/help">도와주세요</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2">
-                    <h6>Contact Info</h6>
-                    <ul class="list-unstyled">
-                        <li>연락처</li>
-                        <li>이메일</li>
-                    </ul>
-                </div>
-                <div class="col-md-2">
-                    <h6>Quick Link</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="">페이스북</a></li>
-                        <li><a href="">트위터</a></li>
-                        <li><a href="">블로그</a></li>
-                    </ul>
-                </div>
+            </div>
         </footer>
 
         <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>

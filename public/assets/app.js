@@ -174,7 +174,7 @@ $(document).ready(function () {
     });
   });
 });
-},{"./style.scss":2}],8:[function(require,module,exports) {
+},{"./style.scss":2}],15:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -295,5 +295,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[8,1])
+},{}]},{},[15,1])
 //# sourceMappingURL=/assets/app.map

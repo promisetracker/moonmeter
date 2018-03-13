@@ -7,33 +7,29 @@
 	<div class="row">
 		<div id="content" class="col-md-8">
 			<div class="content-header">
-				<h1 class="page-title">{{ promise.sp_title }}</h1>
-				<p class="lead">
-					{{ promise.sp_title }}
-				</p>
-				<dl class="row">
-					<dt class="col-sm-2">4대 비전:</dt>
-					<dd class="col-sm-10">{{ promise.pv_title }}</dd>
-					<dt class="col-sm-2">12대 공약:</dt>
-					<dd class="col-sm-10">{{ promise.pp_title }}</dd>
-					<dt class="col-sm-2">주제:</dt>
-					<dd class="col-sm-10">{{ promise.ppk_title }}</dd>
-					<dt class="col-sm-2">메인 약속:</dt>
-					<dd class="col-sm-10">{{ promise.mp_title }}</dd>
-				</dl>
+				<h1 class="pt-5 pb-2 w-75">{{ promise.sp_title }}</h1>
 				<div class="row justify-content-between">
 					<div class="col-4">
 						<ul class="list-inline">
-							<li class="list-inline-item">공유</li>
-							<li class="list-inline-item">댓글</li>
+							<li class="list-inline-item btn btn-light px-3 border">
+								댓글 <span class="ml-3 disqus-comment-count" data-disqus-url="http://moonmeter.kr/promise/{{ id }}">0</span>
+							</li>
 						</ul>
 					</div>
-					<div class="col-4">
+					<div class="col-3 text-right">
 						<ul class="list-inline">
-							<li class="list-inline-item">페북</li>
-							<li class="list-inline-item">트위터</li>
-							<li class="list-inline-item">네이버</li>
-							<li class="list-inline-item">구글</li>
+							<li class="list-inline-item">
+								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ 'http://moonmeter.kr/promise/' ~ id | url_encode }}"><img src="/assets/btn/facebook.png" alt=""></a>
+							</li>
+							<li class="list-inline-item">
+								<a target="_blank" href="https://plus.google.com/share?url={{ 'http://moonmeter.kr/promise/' ~ id | url_encode }}"><img src="/assets/btn/gplus.png" alt=""></a>
+							</li>
+							<li class="list-inline-item">
+								<a target="_blank" href="http://share.naver.com/web/shareView.nhn?url={{ 'http://moonmeter.kr/promise/' ~ id | url_encode }}&amp;title={{ promise.sp_title | url_encode }}"><img src="/assets/btn/naver.png" alt=""></a>
+							</li>
+							<li class="list-inline-item">
+								<a target="_blank" href="https://twitter.com/home?status={{ 'http://moonmeter.kr/promise/' ~ id | url_encode }}"><img src="/assets/btn/twitter.png" alt=""></a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -42,7 +38,7 @@
 			<section class="status my-5">
 				<h3 class="my-4">공약 진행 단계</h3>
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-md-2 text-center">
 						<span class="text-success lead">{{ status[promise.promise_level] }}</span>
 					</div>
 					<div class="col-md-10">
@@ -50,12 +46,12 @@
 {% if promise.promise_level %}
 {% set percentage = 6 // promise.promise_level * 10 %}
 {% endif %}
-						<div class="progress">
+						<div class="progress my-2">
 							<div class="progress-bar bg-success" role="progressbar" style="width: {{ percentage }}%" aria-valuenow="{{ promise.promise_level }}" aria-valuemin="1" aria-valuemax="6">{{ percentage }}%</div>
 						</div>
-						<ul class="list-inline">
+						<ul class="list-inline d-flex justify-content-between">
 {% for step in status %}
-							<li class="list-inline-item text-muted {% if not loop.last %}mr-5{% endif %}">{{ step }}</li>
+							<li class="list-inline-item text-muted"><small>{{ step }}</small></li>
 {% endfor %}
 						</ul>
 					</div>
@@ -82,9 +78,21 @@
 			<div id="disqus_thread"></div>
 		</div>
 
-		<div id="sidebar" class="col-md-3">
-			{% include 'sidebar.twig' %}
+		<div id="sidebar" class="col-md-3 offset-md-1">
+			<div class="block status mt-4 pt-4">
+				<dl>
+					<dt class="d-block">4대 비전:</dt>
+					<dd class="d-block"><a href="/promises/v/{{ promise.pv_no }}">{{ promise.pv_title }}</a></dd>
+					<dt class="d-block">12대 공약:</dt>
+					<dd class="d-block">{{ promise.pp_title }}</dd>
+					<dt class="d-block">주제:</dt>
+					<dd class="d-block">{{ promise.ppk_title }}</dd>
+					<dt class="d-block">메인 약속:</dt>
+					<dd class="d-block">{{ promise.mp_title }}</dd>
+				</dl>
+			</div>
 		</div>
+
 	</div>
 </div>
 

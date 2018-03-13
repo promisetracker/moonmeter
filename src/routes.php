@@ -146,6 +146,7 @@ $app->get('/promise/{id}', function (Request $request, Response $response, array
     }
 
     $args = [
+        'id' => $id,
 		'promise' => $promise,
 		'status' => $status,
 		'note' => $note,
