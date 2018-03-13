@@ -11,7 +11,7 @@
 			<div class="content-header">
 				<h1 class="page-title">문재인 공약</h1>
 				<span>비전 {{ vision_id }}</span>
-				<h2 class="my-3">{{ vision_title }}</h2>
+				<h2 class="my-2">{{ vision_title }}</h2>
 			</div>
 	{% set subjects = promises[vision_title] %}
 		{% for subject_title, categories in subjects %}
@@ -24,13 +24,13 @@
 				{% endfor %}
 				</ul>
 			</h3>
-			<div id="subject-{{ subject_seq }}" class="collapse{% if subject_seq == 1 %} show{% endif %}">
+			<div id="subject-{{ subject_seq }}" class="collapse{% if subject_seq == 1 %} show{% endif %} mb-5">
 				{% for category_title, promises in categories %}
 				{% set category_seq = loop.index %}
 					<h4 class="category py-3" data-toggle="collapse" data-target="#subject-{{ subject_seq }}-category-{{ category_seq }}" aria-expanded="true" aria-controls="#subject-{{ subject_seq }}-category-{{ category_seq }}">{{ subject_seq }}.{{ category_seq }}. {{ category_title }}</h4>
 					<div id="subject-{{ subject_seq }}-category-{{ category_seq }}" class="collapse{% if category_seq == 1 %} show{% endif %}">
 						{% for promise, details in promises %}
-							<p>{{ subject_seq }}.{{ category_seq }}.{{ loop.index}} &nbsp; {{ promise }}</p>
+							<h5 class="pt-3">{{ subject_seq }}.{{ category_seq }}.{{ loop.index}} &nbsp; {{ promise }}</h5>
 							<ul class="list-unstyled ml-5 mb-3">
 							{% for detail in details %}
 								<li><a href="/promise/{{ detail.sp_no }}">{{ detail.sp_title }}</a></li>

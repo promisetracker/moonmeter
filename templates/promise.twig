@@ -12,7 +12,7 @@
 					<div class="col-4">
 						<ul class="list-inline">
 							<li class="list-inline-item btn btn-light px-3 border">
-								댓글 <span class="ml-3 disqus-comment-count" data-disqus-url="http://moonmeter.kr/promise/{{ id }}">0</span>
+								<i class="fa fa-commenting-o mr-1 mb-1"></i> <small>댓글 <span class="ml-2 disqus-comment-count" data-disqus-url="http://moonmeter.kr/promise/{{ id }}">0</span></small>
 							</li>
 						</ul>
 					</div>
@@ -36,7 +36,7 @@
 			</div>
 
 			<section class="status my-5">
-				<h3 class="my-4">공약 진행 단계</h3>
+				<h3 class="my-4 bb-1">공약 진행 단계</h3>
 				<div class="row">
 					<div class="col-md-2 text-center">
 						<span class="text-success lead">{{ status[promise.promise_level] }}</span>
@@ -60,14 +60,14 @@
 
 {% if note.fcd_desc is not empty %}
 			<section class="moonmeter my-5">
-				<h3 class="my-4">문미터 의견</h3>
+				<h3 class="my-4 bb-1">문미터 의견</h3>
 				<p>{{ note.fcd_desc | raw }}</p>	
 			</section>
 {% endif %}
 
 {% if articles | length > 0 %}
 			<section class="related-news my-5">
-				<h3 class="my-4">근거 기사</h3>
+				<h3 class="my-4 bb-1">근거 기사</h3>
 				<ul class="list-unstyled">
 {% for article in articles %}
 					<li class="bb-1 py-2"><a href="{{ article.r_link}}" target="_blank">{{ article.r_title }}</a></li>

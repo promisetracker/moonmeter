@@ -6047,32 +6047,16 @@ a.text-dark:hover, a.text-dark:focus {
   background-size: cover; }
 
 .page-title {
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   padding: 0.5rem 0;
   margin: 1.5rem 0;
   border-bottom: 1px solid #ccc; }
 
 .bb-1 {
-  border-bottom: 1px solid #ccc; }
-
-.promise.detail h1 {
-  font-size: 1.6rem;
-  font-weight: bold;
-  line-height: 1.4; }
-
-.promise.detail h3 {
-  font-size: 1.1rem;
-  padding-bottom: .5rem;
-  margin-bottom: .5rem;
-  border-bottom: 1px solid #ccc; }
+  border-bottom: 1px solid #e9ecef; }
 
 .promise.detail .list-inline-item img {
   max-width: 32px; }
-
-.promise.detail .status .text-success.lead {
-  font-weight: bold;
-  text-align: center;
-  font-size: 1.6rem; }
 
 .promise.detail #sidebar .block.overview {
   background-color: #f8f9fa; }
@@ -6220,3 +6204,32 @@ input[type="text"].form-control {
 
 header.global nav {
   border-bottom: 1px solid #ccc; }
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1.4; }
+
+h2 {
+  font-size: 1.4rem;
+  line-height: 1.3; }
+
+h3 {
+  font-size: 1.2rem;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem; }
+
+h4 {
+  font-size: 1.1rem;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem; }
+
+h5 {
+  font-size: 1rem;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem; }
+
+.status .text-success.lead {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.6rem; }

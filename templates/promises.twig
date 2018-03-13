@@ -19,7 +19,7 @@
 							<span class="lead sequence">비전 {{ loop.index }}</span>
 							<img src="/assets/candles-square.png" alt="">
 						</a>
-						<h3 id="v{{ loop.index }}" class="bb-1 py-3 mb-3"><a href="/promises/v/{{ loop.index }}">{{ vision_title }}</a></h3>
+						<h3 id="v{{ loop.index }}" class="bb-1 py-3 mb-3 font-weight-bold"><a href="/promises/v/{{ loop.index }}">{{ vision_title }}</a></h3>
 						<ul class="list-unstyled">
 				{% set vision_id = loop.index %}
 				{% for promise_12_title, promise in vision %}
